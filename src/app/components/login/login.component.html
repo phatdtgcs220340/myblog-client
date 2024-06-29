@@ -1,0 +1,26 @@
+<div class="h-screen flex items-center justify-center bg-gray-100 overflow-y-auto">
+  <form
+    class="shadow w-[400px] m-4 py-2 px-4 flex flex-col justify-center bg-white"
+    (submit)="onFormSubmit()">
+    <h1 class="text-2xl self-center mb-2">Sign in</h1>
+    <label class="ml-1" for="username">Username</label>
+    <input class="border mb-1 focus:outline-none p-1 text-sm"
+      name="username"
+      type="text"
+      [(ngModel)]="form.username">
+    <label class="ml-1" for="password">Password</label>
+    <input class="border mb-1 focus:outline-none select-none p-1 text-sm"
+      name="password"
+      type="password"
+      [(ngModel)]="form.password">
+    <p class="ml-1 mb-2
+      text-red-500 text-sm"
+      id="error"></p>
+    <button class="py-1 w-1/2 self-center border rounded-lg" type="submit">Submit</button>
+    <div class="text-sm text-blue-400 mt-1"
+    >First time here?
+      <span class="font-medium underline underline-offset-2
+      hover:text-blue-600 cursor-pointer"> Sign up</span>
+    </div>
+  </form>
+</div>
