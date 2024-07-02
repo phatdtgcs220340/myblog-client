@@ -1,5 +1,4 @@
-import { Component } from '@angular/core';
-
+import { Component, output } from '@angular/core';
 @Component({
   selector: 'app-navbar',
   standalone: true,
@@ -8,5 +7,9 @@ import { Component } from '@angular/core';
   styleUrl: './navbar.component.css'
 })
 export class NavbarComponent {
+  toggleLoginBox = output<void>();
 
+  toggleLoginBoxEvent() {
+    this.toggleLoginBox.emit()
+  }
 }
