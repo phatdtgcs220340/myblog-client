@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { LoginService } from './services/login.service';
-import { LoginForm } from './form.interface';
+import { LoginForm } from '../../api/interfaces/requests.interface';
 import { FormsModule } from '@angular/forms';
 
 @Component({

@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { authorizationURL } from '../../../../app.env';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { LoginForm } from '../form.interface';
+import { LoginForm } from '../../../api/interfaces/requests.interface';
 import { Observable } from 'rxjs';
 
 @Injectable({
@@ -14,8 +14,8 @@ export class LoginService {
 
   postData(form : LoginForm) : Observable<any>{
     const headers = new HttpHeaders({
-      'Content-Type' : 'application/json'
+      'Content-Type' : 'application/x-www-form-urlencoded'
     });
-    return this.http.post<any>(this.apiUrl, form, { headers })
+    return this.http.post<any>(`${this.apiUrl}?username=${form.username}&password=${form.password}`, { headers })
   }
 }
