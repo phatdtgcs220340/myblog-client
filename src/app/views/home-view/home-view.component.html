@@ -4,10 +4,17 @@
     <app-post-card [title]="item.title"></app-post-card>
   }
   </div>
-  @if (serverDown) {
+  @if (serverDown && !isLoading) {
     <div class="h-screen">
-      <img class="opacity-35" src="https://ih1.redbubble.net/image.5469729200.2685/st,small,507x507-pad,600x600,f8f8f8.jpg" alt="">
+      <img class="opacity-35 h-2/3" src="https://ih1.redbubble.net/image.5469729200.2685/st,small,507x507-pad,600x600,f8f8f8.jpg" alt="">
       <h1 class="text-center text-4xl">500 - The server is dead</h1>
+    </div>
+  }
+  @else if (isLoading) {
+    <div>
+      @for (item of [1,1,1]; track $index) {
+        <app-loading-card></app-loading-card>
+      }
     </div>
   }
 </div>

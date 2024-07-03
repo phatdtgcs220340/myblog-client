@@ -1,15 +1,15 @@
 import { Injectable } from '@angular/core';
-import { authorizationURL } from '../../../../app.env';
+import { authorizationURL } from '../../../app.env';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { LoginForm } from '../../../api/interfaces/requests.interface';
+import { LoginForm } from '../../shared/models/interfaces/requests.interface';
 import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
-export class LoginService {
+export class AuthService {
   private apiUrl = `${authorizationURL}/api/login`
-
+  private isAuthenticated = false;
   constructor(private http: HttpClient) { }
 
   postData(form : LoginForm) : Observable<any>{

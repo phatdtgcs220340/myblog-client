@@ -1,5 +1,5 @@
 import { Component, Input, output } from '@angular/core';
-import { LoginComponent } from '../../components/login/login.component';
+import { LoginComponent } from '../../shared/components/login/login.component';
 import { HomeViewComponent } from '../../views/home-view/home-view.component';
 
 @Component({

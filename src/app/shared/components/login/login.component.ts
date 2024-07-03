@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { LoginService } from './services/login.service';
-import { LoginForm } from '../../api/interfaces/requests.interface';
+import { AuthService } from '../../../core/services/auth.service';
+import { LoginForm } from '../../models/interfaces/requests.interface';
 import { FormsModule } from '@angular/forms';
 
 @Component({
@@ -9,25 +9,25 @@ import { FormsModule } from '@angular/forms';
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css'],
   imports : [FormsModule],
-  providers : [LoginService]
+  providers : [AuthService]
 })
 export class LoginComponent implements OnInit {
   form : LoginForm = {
     username : '',
     password : ''
   }
-  constructor(private readonly service : LoginService) { }
+  constructor(private readonly service : AuthService) { }
 
   ngOnInit() {
   }
   onFormSubmit() {
-    this.service.postData(this.form).subscribe(
-      response => {
+    this.service.postData(this.form).subscribe({
+      next : response => {
         console.log('Response from server', response);
       },
-      error => {
+      error : error => {
         console.log('Error', error);
       }
-    )
+    })
   }
 }
