@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { AuthService } from '../../../core/services/auth.service';
+import { AuthService } from '../../../core/services/auth/auth.service';
 import { LoginForm } from '../../models/interfaces/requests.interface';
 import { FormsModule } from '@angular/forms';
 
@@ -16,18 +16,16 @@ export class LoginComponent implements OnInit {
     username : '',
     password : ''
   }
+  isLoading : boolean = false
+
   constructor(private readonly service : AuthService) { }
 
   ngOnInit() {
   }
+
   onFormSubmit() {
-    this.service.postData(this.form).subscribe({
-      next : response => {
-        console.log('Response from server', response);
-      },
-      error : error => {
-        console.log('Error', error);
-      }
-    })
+    this.isLoading = true
+    this.service.postData(this.form)
+    setTimeout(() => this.isLoading = false, 2000)
   }
 }
