@@ -1,4 +1,5 @@
 <main class="main">
-  <app-body></app-body>
+  <app-navbar
+  (toggleLoginBox)="eventToggleLogin()"></app-navbar>
+  <app-body [displayLoginBox]="temp"/>
 </main>
-<router-outlet />

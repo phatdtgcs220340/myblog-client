@@ -1,16 +1,19 @@
 import { Component } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
 import { NavbarComponent } from './layout/navbar/navbar.component';
 import { BodyComponent } from './layout/body/body.component';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, NavbarComponent, BodyComponent],
+  imports: [NavbarComponent, BodyComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })
 export class AppComponent {
   title = 'angular-client';
+  temp : boolean = false;
+  eventToggleLogin() : void {
+    this.temp = !this.temp
+  }
 }
 
