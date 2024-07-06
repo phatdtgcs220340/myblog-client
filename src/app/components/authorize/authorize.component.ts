@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { TokenService } from '../../core/services/token/token.service';
 import { Router } from '@angular/router';
+import { BrowserStorageService } from '../../core/services/browser-storage/browser-storage.service';
 
 @Component({
   selector: 'app-authorize',
@@ -10,14 +11,19 @@ import { Router } from '@angular/router';
   styleUrl: './authorize.component.css'
 })
 export class AuthorizeComponent implements OnInit{
-  constructor(private readonly tokenService : TokenService,
-    private readonly router : Router
+  constructor(
+    private readonly tokenService : TokenService,
+    private readonly router : Router,
+    private readonly storageService : BrowserStorageService
   ) {}
   ngOnInit(): void {
     const code = (new URLSearchParams(window.location.search)).get("code")
     if (typeof code === 'string')
       this.tokenService.exchangeAuthCode(code).subscribe({
         next : response => {
+          this.storageService.set("access_token", response.access_token)
+          this.storageService.set("refresh_token", response.refresh_token)
+          console.log(response.access_token)
           this.router.navigate(['/home'])
         }
       })
