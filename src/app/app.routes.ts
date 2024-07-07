@@ -4,6 +4,8 @@ import { HomeViewComponent } from './views/home-view/home-view.component';
 import { AuthorizeComponent } from './components/authorize/authorize.component';
 
 export const routes: Routes = [
-  { path : 'home' , component : HomeViewComponent},
-  { path : 'authorized', component : AuthorizeComponent }
+  { path : 'home' , component : HomeViewComponent },
+  { path : 'authorized', component : AuthorizeComponent },
+  { path : '', redirectTo : 'home', pathMatch : "full" },
+  { path : '**', component: PageNotFoundComponent }
 ];
