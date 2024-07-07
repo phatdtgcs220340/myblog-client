@@ -11,9 +11,5 @@ import { BodyComponent } from './layout/body/body.component';
 })
 export class AppComponent {
   title = 'angular-client';
-  temp : boolean = false;
-  eventToggleLogin() : void {
-    this.temp = !this.temp
-  }
 }
 

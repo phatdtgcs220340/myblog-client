@@ -13,5 +13,4 @@ import { AuthorizeComponent } from '../../components/authorize/authorize.compone
   styleUrl: './body.component.css'
 })
 export class BodyComponent {
-  @Input() displayLoginBox : boolean = false;
 }
