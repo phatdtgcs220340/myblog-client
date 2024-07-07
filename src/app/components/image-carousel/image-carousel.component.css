@@ -1,0 +1,6 @@
+.carousel-item {
+  transition: transform 0.3s ease-in;
+}
+img {
+  height: 200px;
+}
