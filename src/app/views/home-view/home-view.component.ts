@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { PostCardComponent } from '../../components/post-card/post-card.component';
-import { FetchPostsService } from './services/fetch-posts.service';
+import { FetchPostsService } from '../../core/services/resources/posts/fetch-posts.service';
 import { PartialPost } from '../../shared/models/interfaces/responses.interface';
 import { LoadingCardComponent } from '../../components/loading-card/loading-card.component';
 
@@ -13,7 +13,27 @@ import { LoadingCardComponent } from '../../components/loading-card/loading-card
   providers : [FetchPostsService]
 })
 export class HomeViewComponent implements OnInit {
-  posts : Array<PartialPost> = []
+  posts : Array<PartialPost> = [
+    {
+      id : 1,
+      title : "What is Lorem Ipsum",
+      type : "",
+      dateAudit : "",
+      userId : 1,
+      fullName : "",
+      totalLike : 1,
+      totalReply : 1
+    },{
+      id : 1,
+      title : "What is Lorem Ipsum",
+      type : "",
+      dateAudit : "",
+      userId : 1,
+      fullName : "",
+      totalLike : 1,
+      totalReply : 1
+    }
+  ]
   serverDown : boolean = false
   isLoading : boolean = false
   constructor (private readonly postService : FetchPostsService) { }
@@ -24,7 +44,7 @@ export class HomeViewComponent implements OnInit {
         this.posts = response.content
         this.serverDown = false
       },
-      error : (error) => this.serverDown = true
+      error : (error) => this.serverDown = false
     });
     this.isLoading = false
   }

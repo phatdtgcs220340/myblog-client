@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
-import { resourceURL } from '../../../../app.env';
+import { resourceURL } from '../../../../../app.env';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { BrowserStorageService } from '../../browser-storage/browser-storage.service';
 
 @Injectable({
   providedIn: 'root'
@@ -9,7 +10,7 @@ import { Observable } from 'rxjs';
 export class FetchPostsService {
   private apiUrl = `${resourceURL}/api/v1/blog`
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private storageService : BrowserStorageService) { }
 
   getData(_page : number = 0, _size : number = 5) : Observable<any> {
     if (_size < 1)

@@ -1,6 +1,9 @@
-<div class="w-[600px] h-fit bg-white border border-gray-200 rounded-lg shadow mt-4">
+<div class="w-[600px] bg-white border border-gray-200 rounded-lg shadow mt-4">
   <div class="px-5 pt-5">
       <h5 class="text-xl font-bold tracking-tight text-gray-900">{{ title }}</h5>
+  </div>
+  <div class="px-5 mt-1">
+    <ng-content/>
   </div>
   <div class="overflow-x-hidden">
     <app-image-carousel></app-image-carousel>

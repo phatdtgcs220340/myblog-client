@@ -1,16 +1,10 @@
 <div class="flex items-center justify-center mt-20">
   <div>
   @for (item of posts; track $index) {
-    <app-post-card [title]="item.title"></app-post-card>
+    <app-post-card [title]="item.title"/>
   }
   </div>
-  @if (serverDown && !isLoading) {
-    <div class="h-screen">
-      <img class="opacity-35 h-2/3" src="https://ih1.redbubble.net/image.5469729200.2685/st,small,507x507-pad,600x600,f8f8f8.jpg" alt="">
-      <h1 class="text-center text-4xl">500 - The server is dead</h1>
-    </div>
-  }
-  @else if (isLoading) {
+  @if (isLoading) {
     <div>
       @for (item of [1,1,1]; track $index) {
         <app-loading-card></app-loading-card>
@@ -18,3 +12,11 @@
     </div>
   }
 </div>
+@if (serverDown && !isLoading) {
+  <div class="h-screen flex items-center justify-center">
+    <div>
+      <img class="max-h-[500px] rounded-lg" src="images/500.jpg" alt="">
+      <h1 class="text-center text-4xl">500 - The server is dead</h1>
+    </div>
+  </div>
+}

@@ -1,9 +1,10 @@
 import { Component } from '@angular/core';
+import { PostCardComponent } from '../../components/post-card/post-card.component';
 
 @Component({
   selector: 'app-post-view',
   standalone: true,
-  imports: [],
+  imports: [PostCardComponent],
   templateUrl: './post-view.component.html',
   styleUrl: './post-view.component.css'
 })
