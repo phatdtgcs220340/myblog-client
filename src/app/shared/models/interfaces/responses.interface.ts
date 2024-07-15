@@ -6,7 +6,8 @@ export interface PartialPost {
   userId : number,
   fullName : string,
   totalLike : number,
-  totalReply : number
+  totalReply : number,
+  images : Array<string>
 }
 
 export interface TokenResponse {
