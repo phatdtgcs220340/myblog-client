@@ -1,0 +1,18 @@
+form > div > label > span {
+  color: #FF4C4C;
+}
+
+form > button:hover {
+  transition: ease-in 200ms;
+  background-color: #c7c7c7;
+  color: #FFFFFF;
+}
+
+form > input {
+  border-radius: 5px;
+}
+
+form > button:focus {
+  background-color: #c7c7c7;
+  color: #FFFFFF;
+}
