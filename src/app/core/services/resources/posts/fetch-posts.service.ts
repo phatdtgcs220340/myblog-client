@@ -1,8 +1,9 @@
 import { Injectable } from '@angular/core';
 import { resourceURL } from '../../../../../app.env';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { BrowserStorageService } from '../../browser-storage/browser-storage.service';
+import { UploadPostForm } from '../../../../shared/models/interfaces/requests.interface';
 
 @Injectable({
   providedIn: 'root'
@@ -18,5 +19,15 @@ export class FetchPostsService {
     return this.http.get<any>(this.apiUrl, {
       params : { page : _page, size : _size }
      })
+  }
+
+  uploadForm(form : FormData) : Observable<any> {
+    const headers = new HttpHeaders({
+      'Authorization' : `Bearer ${this.storageService.get("access_token")}`
+    })
+
+    return this.http.post(this.apiUrl, form, {
+      headers : headers
+    })
   }
 }
