@@ -6,8 +6,7 @@ import { NavIconComponent } from '../../shared/components/nav-icon/nav-icon.comp
   selector: 'app-navbar',
   standalone: true,
   imports: [RouterLink, RouterLinkActive, LoginComponent, NavIconComponent],
-  templateUrl: './navbar.component.html',
-  styleUrl: './navbar.component.css'
+  templateUrl: './navbar.component.html'
 })
 export class NavbarComponent {
 
