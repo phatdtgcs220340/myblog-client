@@ -1,7 +1,8 @@
 <div class="flex items-center justify-center mt-20">
   <div>
   @for (item of posts; track $index) {
-    <app-post-card [title]="item.title"/>
+    <app-post-card
+    [form]="item"/>
   }
   </div>
   @if (isLoading) {

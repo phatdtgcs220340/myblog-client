@@ -13,27 +13,7 @@ import { LoadingCardComponent } from '../../components/loading-card/loading-card
   providers : [FetchPostsService]
 })
 export class HomeViewComponent implements OnInit {
-  posts : Array<PartialPost> = [
-    {
-      id : 1,
-      title : "What is Lorem Ipsum",
-      type : "",
-      dateAudit : "",
-      userId : 1,
-      fullName : "",
-      totalLike : 1,
-      totalReply : 1
-    },{
-      id : 1,
-      title : "What is Lorem Ipsum",
-      type : "",
-      dateAudit : "",
-      userId : 1,
-      fullName : "",
-      totalLike : 1,
-      totalReply : 1
-    }
-  ]
+  posts : Array<PartialPost> = []
   serverDown : boolean = false
   isLoading : boolean = false
   constructor (private readonly postService : FetchPostsService) { }
@@ -44,7 +24,7 @@ export class HomeViewComponent implements OnInit {
         this.posts = response.content
         this.serverDown = false
       },
-      error : (error) => this.serverDown = false
+      error : (error) => this.serverDown = true
     });
     this.isLoading = false
   }

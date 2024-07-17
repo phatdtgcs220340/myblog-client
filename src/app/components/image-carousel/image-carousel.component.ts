@@ -1,4 +1,4 @@
-import { Component, OnInit, signal } from '@angular/core';
+import { Component, Input } from '@angular/core';
 
 @Component({
   selector: 'app-image-carousel',
@@ -7,15 +7,7 @@ import { Component, OnInit, signal } from '@angular/core';
   templateUrl: './image-carousel.component.html',
   styleUrl: './image-carousel.component.css'
 })
-export class ImageCarouselComponent implements OnInit {
-  imagesSQ : Array<number> = [1,1,1,1]
-  index : number = 0
-  ngOnInit(): void {
-  }
+export class ImageCarouselComponent {
+  @Input() images : Array<string> = []
 
-  scrollLeft() : void {
-
-  }
-  scrollRight() : void {
-  }
 }
