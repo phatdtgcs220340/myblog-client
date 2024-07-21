@@ -3,14 +3,16 @@ export interface PartialPost {
   title : string,
   type : string,
   dateAudit : string,
-  userId : number,
-  fullName : string,
-  totalLike : number,
-  totalReply : number,
   images : Array<string>
 }
 
 export interface TokenResponse {
   access_token : string,
   refresh_token : string
+}
+
+export interface FullPost extends PartialPost{
+  content : string,
+  totalLikes : number,
+  totalReplies : number
 }

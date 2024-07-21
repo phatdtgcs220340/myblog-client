@@ -1,17 +1,17 @@
 <div class="flex items-start justify-center">
   <form (submit)="upload($event)" class="border mt-24 ml-4 p-3 w-3/5 mr-2 bg-white">
-    <div class="text-center w-full text-2xl mb-2">
+    <div class="text-center w-full text-2xl mb-2 font-medium">
       Create a post
     </div>
     <div>
-      <label for=""><span>*</span> Title</label>
+      <label for=""><span class="text-red-600">*</span> Title</label>
       <input class="px-1 py-2 border w-full focus:outline-none"
       type="text" name="title"
       required
       [(ngModel)]="form.title">
     </div>
     <div class="mt-2">
-      <label for=""><span>*</span> Tag</label>
+      <label for=""><span class="text-red-600">*</span> Tag</label>
       <br>
       <select [(ngModel)]="form.type"
       name="type"
@@ -23,7 +23,7 @@
       </select>
     </div>
     <div class="mt-2">
-      <label for=""><span>*</span> Content</label>
+      <label for=""><span class="text-red-600">*</span> Content</label>
       <textarea id="editor" rows="10"
       [(ngModel)]="form.content"
       name="content"
@@ -69,9 +69,11 @@
       </div>
     </div>
     <button type="submit"
-      class="mt-4 py-1 w-[150px] self-center border rounded-lg flex items-center justify-center"
+      class="mt-4 py-1 w-[150px] self-center border rounded-lg flex items-center justify-center
+      font-medium
+      hover:bg-gray-700 hover:text-white"
       [class.cursor-wait]="isLoading"
-      [style.background-color]="isLoading ? '#c7c7c7' : ''"
+      [class.bg-gray-700]="isLoading"
       [disabled]="isLoading">
       @if (!isLoading) {
         <div>Publish post</div>
@@ -83,7 +85,4 @@
       }
     </button>
   </form>
-  <!-- <div class="mt-24">
-    <img src="https://i.pinimg.com/736x/86/9f/73/869f73fb8f7b403876d3191b05ed065c.jpg" class="h-[700px]" alt="">
-  </div> -->
 </div>

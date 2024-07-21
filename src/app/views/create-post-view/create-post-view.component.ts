@@ -7,8 +7,7 @@ import { FormsModule } from '@angular/forms';
   selector: 'app-create-post-view',
   standalone: true,
   imports: [FormsModule],
-  templateUrl: './create-post-view.component.html',
-  styleUrls: ['./create-post-view.component.css']
+  templateUrl: './create-post-view.component.html'
 })
 export class CreatePostViewComponent {
   form: UploadPostForm = {

@@ -1,4 +1,8 @@
-<div class="p-2 inline-flex gap-1 carousel overflow-x-scroll">
+<div
+  (mousedown)="onMouseDown($event)" (mousemove)="onMouseMove($event)" (mouseleave)="onMouseUp($event)"
+  #carouselRef
+  class="p-2 inline-flex gap-1 carousel cursor-grabbing"
+  [style.transform]="'translateX(' + offsetX + 'px)'">
   @for (item of images; track $index) {
     <div
     class="h-[200px] min-w-fit bg-gray-200 carousel-item rounded-lg

@@ -8,7 +8,7 @@ form > input {
   border-radius: 5px;
 }
 
-form > button:focus {
+form > button::after {
   background-color: #c7c7c7;
   color: #FFFFFF;
 }

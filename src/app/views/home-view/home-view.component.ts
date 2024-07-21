@@ -19,7 +19,7 @@ export class HomeViewComponent implements OnInit {
   constructor (private readonly postService : FetchPostsService) { }
   async ngOnInit(): Promise<void> {
     this.isLoading = true
-    await this.postService.getData().subscribe({
+    await this.postService.getPartialPost().subscribe({
       next : (response) => {
         this.posts = response.content
         this.serverDown = false
