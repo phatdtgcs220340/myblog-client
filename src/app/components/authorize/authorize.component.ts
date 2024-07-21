@@ -23,7 +23,6 @@ export class AuthorizeComponent implements OnInit{
         next : response => {
           this.storageService.set("access_token", response.access_token)
           this.storageService.set("refresh_token", response.refresh_token)
-          console.log(response.access_token)
           this.router.navigate(['/home'])
         }
       })
