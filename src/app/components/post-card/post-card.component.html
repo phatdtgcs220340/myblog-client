@@ -1,11 +1,13 @@
-<div class="w-[600px] bg-white border border-gray-200 rounded-lg shadow mt-4">
-  <div class="px-5 pt-5">
-      <h5 class="text-xl font-bold tracking-tight text-gray-900">{{ title }}</h5>
-  </div>
-  <div class="px-5 mt-1">
-    <ng-content/>
-  </div>
-  <div class="overflow-x-hidden">
-    <app-image-carousel></app-image-carousel>
-  </div>
+<div class="w-[600px] bg-white border border-gray-200 rounded-lg shadow mt-4 cursor-pointer"
+  >
+    <a [routerLink]="link" class="pt-5">
+        <h5 class="ml-2 mt-2 text-xl font-bold tracking-tight text-gray-900">{{ form.title }}</h5>
+    </a>
+    <div class="px-5 mt-1">
+      <ng-content/>
+    </div>
+    <div class="overflow-x-hidden">
+      <app-image-carousel
+      [images]="form.images"></app-image-carousel>
+    </div>
 </div>
