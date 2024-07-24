@@ -8,7 +8,7 @@ import { canActivateAdmin } from './core/guard/admin-guard';
 
 export const routes: Routes = [
   { path : 'home', component : HomeViewComponent },
-  { path : 'authorize', component : AuthorizeComponent },
+  { path : 'authorized', component : AuthorizeComponent },
   { path : 'post/:id', component : PostViewComponent },
   { path : 'admin' , component : CreatePostViewComponent, canActivate : [canActivateAdmin] },
   { path : '', redirectTo : 'home', pathMatch : "full" },
