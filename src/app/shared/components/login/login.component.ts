@@ -28,7 +28,7 @@ export class LoginComponent implements OnInit {
   async onFormSubmit() {
     this.isLoading = true
     this.loginFailed = false
-    await this.service.postData(this.form).subscribe({
+    await this.service.login(this.form).subscribe({
       next : response => window.location.assign(authorizationLink),
       error: error => this.loginFailed = true
     })
