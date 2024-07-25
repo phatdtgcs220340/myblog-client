@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { PostCardComponent } from '../../components/post-card/post-card.component';
+import { PostCardComponent } from '../../shared/components/post-card/post-card.component';
 
 @Component({
   selector: 'app-post-view',

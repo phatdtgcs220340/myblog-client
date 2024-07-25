@@ -1,7 +1,7 @@
 import { Routes } from '@angular/router';
 import { PageNotFoundComponent } from './views/page-not-found/page-not-found.component';
 import { HomeViewComponent } from './views/home-view/home-view.component';
-import { AuthorizeComponent } from './components/authorize/authorize.component';
+import { AuthorizeComponent } from './views/authorize/authorize.component';
 import { PostViewComponent } from './views/post-view/post-view.component';
 import { CreatePostViewComponent } from './views/create-post-view/create-post-view.component';
 import { canActivateAdmin } from './core/guard/admin-guard';

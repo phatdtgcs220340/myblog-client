@@ -1,6 +1,6 @@
 import { AfterViewInit, Component, Input } from '@angular/core';
 import { ImageCarouselComponent } from '../image-carousel/image-carousel.component';
-import { PartialPost } from '../../shared/models/interfaces/responses.interface';
+import { PartialPost } from '../../models/interfaces/responses.interface';
 import { Router, RouterLink } from '@angular/router';
 
 @Component({
