@@ -11,21 +11,4 @@ export class ImageCarouselComponent {
   @ViewChild('carouselRef', { static: true }) carouselRef! : ElementRef
   @Input() images : Array<string> = []
   offsetX: number = 0;
-  initialX!: number;
-  isScroll : boolean = false
-
-  onMouseDown(event : MouseEvent) {
-    event.preventDefault()
-    this.isScroll = !this.isScroll;
-    this.initialX = event.x - this.offsetX
-  }
-
-  onMouseMove(event : MouseEvent) {
-    if (this.isScroll)
-      this.offsetX = event.x - this.initialX
-  }
-
-  onMouseUp(event : MouseEvent) {
-    this.isScroll = false
-  }
 }
