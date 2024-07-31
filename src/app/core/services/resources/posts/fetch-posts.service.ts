@@ -33,7 +33,7 @@ export class FetchPostsService {
   }
 
   getFullPost(id : number) : Observable<FullPost> {
-    return this.http.get<FullPost>(`this.apiUrl/${id}`)
+    return this.http.get<FullPost>(`${this.apiUrl}/${id}`)
   }
 
 }
