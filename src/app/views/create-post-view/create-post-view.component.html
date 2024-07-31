@@ -37,12 +37,14 @@
         @for (item of form.files; track $index) {
           <label class="flex flex-col items-center justify-center h-48 p-1 border-2 border-gray-300 border-dashed rounded-lg cursor-pointer bg-gray-50 mr-2 relative">
             <img class="max-h-[180px]" [src]="item.blobUrl" alt="">
-            <div class="absolute -top-4 -right-4 p-0.5 rounded-full bg-gray-200 cursor-pointer opacity-50 hover:opacity-100"
+            <div class="absolute -top-4 -right-4 rounded-full bg-gray-200 cursor-pointer opacity-50 hover:opacity-100"
             (click)="deleteBlob($index)">
-              <svg width="30px" height="30px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M6 6L18 18" stroke="#000000" stroke-linecap="round"/>
-                <path d="M18 6L6.00001 18" stroke="#000000" stroke-linecap="round"/>
-              </svg>
+            <svg
+            class="cursor-pointer rounded-full p-1 hover:bg-gray-200"
+            width="30px" height="30px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M6 6L18 18" stroke="#000000" stroke-linecap="round"/>
+              <path d="M18 6L6.00001 18" stroke="#000000" stroke-linecap="round"/>
+            </svg>
             </div>
           </label>
         }
