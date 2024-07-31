@@ -1,13 +1,24 @@
-<div class="w-[630px] bg-white border border-gray-200 rounded-lg shadow mt-4 mr-4  cursor-pointer"
+<div class="w-[630px] bg-white border border-gray-200 rounded-lg shadow mt-4 mr-4 cursor-pointer p-2"
   >
-    <a [routerLink]="link" class="pt-5">
+    <a [routerLink]="'/post/' + form.id" class="pt-5">
         <h5 class="ml-2 mt-2 text-xl font-bold tracking-tight text-gray-900">{{ form.title }}</h5>
     </a>
-    <div class="px-5 mt-1">
+    <div class="ml-2 mt-1">
       <ng-content/>
     </div>
     <div class="overflow-x-hidden">
       <app-image-carousel
       [images]="form.images"></app-image-carousel>
+    </div>
+    <div class="w-full flex justify-between">
+      <button
+        class="ml-2 mb-2 py-1 px-2 shadow rounded-full bg-gray-400
+        text-sm font-medium text-gray-50
+        hover:bg-gray-500">
+        # {{ form.type }}
+      </button>
+      <div class="mr-2 font-light">
+        {{ form.dateAudit }}
+      </div>
     </div>
 </div>
