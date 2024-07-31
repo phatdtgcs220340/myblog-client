@@ -1,3 +1,5 @@
-<app-post-card>
-
-</app-post-card>
+<div class="mt-20 h-screen flex justify-center">
+  <app-post-card [form]="toPartial(post)">
+    {{ post.content }}
+  </app-post-card>
+</div>
