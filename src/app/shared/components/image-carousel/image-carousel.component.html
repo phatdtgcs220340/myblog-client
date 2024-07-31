@@ -1,21 +1,23 @@
-<div class="relative z-50">
-  <button [disabled]="offsetX == 0"
-    [class]="offsetX == 0 ? '' : 'cursor-pointer hover:bg-gray-100 hover:opacity-100'"
-    class="absolute top-20 bg-gray-50 opacity-35 rounded-full"
-    (click)="offsetX = offsetX - 1">
-    <svg width="40px" height="40px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <path d="M6 12H18M6 12L11 7M6 12L11 17" stroke="#000000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-    </svg>
-  </button>
-  <button [disabled]="offsetX == images.length - 3"
-    [class]="offsetX == images.length - 3 ? '' : 'cursor-pointer hover:bg-gray-100 hover:opacity-100'"
-    class="absolute top-20 right-0 bg-gray-50 opacity-35 rounded-full"
-    (click)="offsetX = offsetX + 1">
-    <svg width="40px" height="40px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <path d="M6 12H18M18 12L13 7M18 12L13 17" stroke="#000000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-    </svg>
-  </button>
-</div>
+@if (images.length > 3) {
+  <div class="relative z-10">
+    <button [disabled]="offsetX == 0"
+      [class]="offsetX == 0 ? '' : 'cursor-pointer hover:bg-gray-100 hover:opacity-100'"
+      class="absolute top-20 bg-gray-50 opacity-35 rounded-full"
+      (click)="offsetX = offsetX - 1">
+      <svg width="40px" height="40px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M6 12H18M6 12L11 7M6 12L11 17" stroke="#000000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+    </button>
+    <button [disabled]="offsetX == images.length - 3"
+      [class]="offsetX == images.length - 3 ? '' : 'cursor-pointer hover:bg-gray-100 hover:opacity-100'"
+      class="absolute top-20 right-0 bg-gray-50 opacity-35 rounded-full"
+      (click)="offsetX = offsetX + 1">
+      <svg width="40px" height="40px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M6 12H18M18 12L13 7M18 12L13 17" stroke="#000000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+    </button>
+  </div>
+}
 <div
   class="p-2 inline-flex gap-1 carousel"
   [style.transform]="'translateX(' + -200 * offsetX + 'px)'">
@@ -27,4 +29,8 @@
     </div>
   }
 </div>
-
+<!-- @if (displayImage != null) {
+  <div class="h-screen flex items-center justify-center z-50">
+    <img [src]="displayImage" alt="">
+  </div>
+} -->

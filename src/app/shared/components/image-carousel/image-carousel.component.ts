@@ -8,7 +8,7 @@ import { Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
   styleUrl: './image-carousel.component.css'
 })
 export class ImageCarouselComponent {
-  @ViewChild('carouselRef', { static: true }) carouselRef! : ElementRef
   @Input() images : Array<string> = []
   offsetX: number = 0;
+  displayImage : string | null = null;
 }
