@@ -1,5 +1,6 @@
 <div class="mt-20 h-screen flex justify-center">
-  <app-post-card [form]="toPartial(post)">
+  <app-post-card [form]="post">
     {{ post.content }}
   </app-post-card>
+  <app-reply-card></app-reply-card>
 </div>
