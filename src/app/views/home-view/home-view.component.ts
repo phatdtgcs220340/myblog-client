@@ -1,13 +1,14 @@
 import { Component, OnInit } from '@angular/core';
-import { PostCardComponent } from '../../components/post-card/post-card.component';
+import { PostCardComponent } from '../../shared/components/post-card/post-card.component';
 import { FetchPostsService } from '../../core/services/resources/posts/fetch-posts.service';
 import { PartialPost } from '../../shared/models/interfaces/responses.interface';
-import { LoadingCardComponent } from '../../components/loading-card/loading-card.component';
+import { LoadingCardComponent } from '../../shared/components/loading-card/loading-card.component';
+import { SideBarComponent } from '../../layout/side-bar/side-bar.component';
 
 @Component({
   selector: 'app-home-view',
   standalone: true,
-  imports: [PostCardComponent, LoadingCardComponent],
+  imports: [PostCardComponent, LoadingCardComponent, SideBarComponent],
   templateUrl: './home-view.component.html',
   styleUrl: './home-view.component.css',
   providers : [FetchPostsService]

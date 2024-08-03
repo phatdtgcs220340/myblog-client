@@ -1,5 +1,5 @@
-<div class="flex items-center justify-center mt-20">
-  <div>
+<div class="flex items-center ml-20 mt-20">
+  <div class="grid lg:grid-cols-2">
   @for (item of posts; track $index) {
     <app-post-card
     [form]="item"/>
@@ -21,3 +21,4 @@
     </div>
   </div>
 }
+<app-side-bar/>

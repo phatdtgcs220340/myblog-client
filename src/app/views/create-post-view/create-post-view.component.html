@@ -1,11 +1,11 @@
 <div class="flex items-start justify-center">
-  <form (submit)="upload($event)" class="border mt-24 ml-4 p-3 w-3/5 mr-2 bg-white">
+  <form (submit)="upload($event)" class="border my-24 ml-4 p-3 w-3/5 mr-2 bg-white">
     <div class="text-center w-full text-2xl mb-2 font-medium">
       Create a post
     </div>
     <div>
       <label for=""><span class="text-red-600">*</span> Title</label>
-      <input class="px-1 py-2 border w-full focus:outline-none"
+      <input class="px-1 py-1 border w-full focus:outline-none"
       type="text" name="title"
       required
       [(ngModel)]="form.title">
