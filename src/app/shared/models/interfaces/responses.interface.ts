@@ -16,3 +16,11 @@ export interface FullPost extends PartialPost{
   totalLikes : number,
   totalReplies : number
 }
+
+export interface Reply {
+  userId : number,
+  username : string,
+  avatar : string,
+  content : string,
+  dateAudit : string
+}
