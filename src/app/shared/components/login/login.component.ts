@@ -8,7 +8,6 @@ import { authorizationLink } from '../../../../app.env';
   standalone : true,
   selector: 'app-login-button',
   templateUrl: './login.component.html',
-  styleUrls: ['./login.component.css'],
   imports : [FormsModule],
   providers : [AuthService]
 })
