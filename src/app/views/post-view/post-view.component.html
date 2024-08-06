@@ -1,6 +1,8 @@
-<div class="mt-20 h-screen flex justify-center">
+<div class="h-screen flex justify-center items-center">
+  <div class="flex flex-col lg:flex-row p-10">
   <app-post-card [form]="post">
     {{ post.content }}
   </app-post-card>
   <app-reply-card></app-reply-card>
+</div>
 </div>
