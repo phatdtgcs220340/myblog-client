@@ -5,6 +5,12 @@ export interface LoginForm {
   password : string
 }
 
+export interface RegisterForm {
+  fullName : string,
+  username : string,
+  password : string,
+}
+
 export interface UploadPostForm {
   title : string,
   type : BlogType,

@@ -8,7 +8,8 @@ export interface PartialPost {
 
 export interface TokenResponse {
   access_token : string,
-  refresh_token : string
+  refresh_token : string,
+  id_token : string
 }
 
 export interface FullPost extends PartialPost{
