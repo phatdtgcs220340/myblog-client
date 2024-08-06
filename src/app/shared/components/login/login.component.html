@@ -2,7 +2,7 @@
   class="border rounded-lg px-4 py-2
   text-gray-700 font-medium text-sm text-center
   hover:bg-gray-500 hover:text-white
-  focus:ring-4 focus:outline-none focus:ring-gray-200 focus:bg-gray-500 focus:text-white">
+  focus:ring-4 focus:ring-gray-200 focus:bg-gray-500 focus:text-white">
   <span>
   Sign in
   </span>
@@ -28,14 +28,14 @@
           </div>
           <h1 class="text-2xl self-center mb-2 font-medium">Sign in</h1>
           <label class="ml-1" for="username">Username</label>
-          <input class="border mb-1 focus:outline-none p-1 text-sm"
+          <input class="border mb-1 p-1 text-sm focus:outline-none"
             name="username"
             required
             placeholder="johndoe@yourcompany.com"
             type="text"
             [(ngModel)]="loginForm.username">
           <label class="ml-1" for="password">Password</label>
-          <input class="border mb-2 focus:outline-none select-none p-1 text-sm"
+          <input class="border mb-2 select-none p-1 text-sm focus:outline-none"
             name="password"
             required
             placeholder="********"
@@ -92,28 +92,28 @@
           </div>
           <h1 class="text-2xl self-center mb-2 font-medium">Sign up</h1>
           <label class="ml-1" for="username">Fullname</label>
-          <input class="border mb-1 focus:outline-none p-1 text-sm"
+          <input class="border mb-1 p-1 text-sm focus:outline-none"
             required
             placeholder="John Doe"
             name="fullName"
             [(ngModel)]="registerForm.fullName"
             type="text">
           <label class="ml-1" for="username">Email</label>
-          <input class="border mb-1 focus:outline-none p-1 text-sm"
+          <input class="border mb-1 p-1 text-sm focus:outline-none"
             required
             placeholder="johndoe@yourcompany.com"
             name="userame"
             [(ngModel)]="registerForm.username"
             type="text">
           <label class="ml-1" for="password">Password</label>
-          <input class="border mb-2 focus:outline-none select-none p-1 text-sm"
+          <input class="border mb-2 select-none p-1 text-sm focus:outline-none"
             required
             placeholder="********"
             name="password"
             [(ngModel)]="registerForm.password"
             type="password">
             <label class="ml-1" for="password">Confirm password</label>
-          <input class="border mb-2 focus:outline-none select-none p-1 text-sm"
+          <input class="border mb-2 select-none p-1 text-sm focus:outline-none"
             required
             placeholder="********"
             type="password">
