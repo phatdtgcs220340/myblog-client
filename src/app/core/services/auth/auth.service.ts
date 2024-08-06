@@ -1,14 +1,16 @@
 import { Injectable } from '@angular/core';
-import { authorizationURL } from '../../../../app.env';
+import { authorizationURL, resourceURL } from '../../../../app.env';
 import { HttpClient, HttpHeaders} from '@angular/common/http';
-import { LoginForm } from '../../../shared/models/interfaces/requests.interface';
+import { LoginForm, RegisterForm } from '../../../shared/models/interfaces/requests.interface';
 import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
-  private apiUrl = `${authorizationURL}/api/login`
+  private loginApi = `${authorizationURL}/api/login`
+  private registerApi = `${authorizationURL}/api/register`
+  private registerResourceApi = `${resourceURL}/api/register`
   private authenticated : boolean = false;
 
   constructor(private readonly http: HttpClient) {}
@@ -21,10 +23,27 @@ export class AuthService {
     body.set('username', form.username);
     body.set('password', form.password);
 
-    return this.http.post<any>(this.apiUrl, body.toString(), {
+    return this.http.post<any>(this.loginApi, body.toString(), {
       headers: headers,
       withCredentials: true,
       observe : 'response'
+    })
+  }
+
+  register(form : RegisterForm) : Observable<any>{
+    const headers = new HttpHeaders({
+      'Content-Type' : 'application/json'
+    })
+
+    return this.http.post(this.registerApi, form)
+  }
+
+  registerResource(token : string) : Observable<any> {
+    const headers = new HttpHeaders({
+      'Id-Token' : token
+    })
+    return this.http.get(this.registerResourceApi, {
+      headers : headers
     })
   }
 }
