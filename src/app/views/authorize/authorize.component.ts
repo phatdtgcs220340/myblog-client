@@ -3,6 +3,7 @@ import { TokenService } from '../../core/services/token/token.service';
 import { Router } from '@angular/router';
 import { BrowserStorageService } from '../../core/services/browser-storage/browser-storage.service';
 import { AuthService } from '../../core/services/auth/auth.service';
+import { FetchUserService } from '../../core/services/resources/users/fetch-user.service';
 
 @Component({
   selector: 'app-authorize',
@@ -16,7 +17,8 @@ export class AuthorizeComponent implements OnInit{
     private readonly tokenService : TokenService,
     private readonly router : Router,
     private readonly storageService : BrowserStorageService,
-    private readonly authService : AuthService
+    private readonly authService : AuthService,
+    private readonly userService : FetchUserService
   ) {}
   ngOnInit(): void {
     const code = (new URLSearchParams(window.location.search)).get("code")
@@ -26,6 +28,7 @@ export class AuthorizeComponent implements OnInit{
           this.storageService.set("access_token", response.access_token)
           this.storageService.set("refresh_token", response.refresh_token)
           this.authService.registerResource(response.id_token).subscribe()
+          this.userService.fetchCurrentUser().subscribe()
           this.router.navigate(['/home'])
         }
       })
