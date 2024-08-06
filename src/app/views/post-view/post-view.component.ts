@@ -14,18 +14,14 @@ import { ReplyCardComponent } from '../../shared/components/reply/reply-card/rep
 })
 export class PostViewComponent implements OnInit {
   post : FullPost = {
-    content: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.',
+    content: '',
     totalLikes: 0,
     totalReplies: 0,
     id: 0,
-    title: 'What is Lorem Ipsum?',
-    type: 'Thanh Huyen',
-    dateAudit: '26/02/2022',
-    images: [
-      "https://butwhytho.net/wp-content/uploads/2023/11/Frieren-Beyond-Journeys-End-Ep-12-But-Why-Tho.jpg",
-      "https://butwhytho.net/wp-content/uploads/2023/11/Frieren-Beyond-Journeys-End-Ep-12-But-Why-Tho.jpg",
-      "https://butwhytho.net/wp-content/uploads/2023/11/Frieren-Beyond-Journeys-End-Ep-12-But-Why-Tho.jpg",
-      "https://butwhytho.net/wp-content/uploads/2023/11/Frieren-Beyond-Journeys-End-Ep-12-But-Why-Tho.jpg"]
+    title: '',
+    type: '',
+    dateAudit: '',
+    images: []
   }
 
   constructor(
@@ -34,18 +30,18 @@ export class PostViewComponent implements OnInit {
     private readonly router : Router) {}
 
   ngOnInit(): void {
-    // this.routes.paramMap.subscribe(params => {
-    //   const id = params.get('id')
-    //   if (typeof id == 'string') {
-    //     const _id : number = +id
-    //     this.service.getFullPost(_id).subscribe({
-    //       next : response => this.post = response,
-    //       error : e => this.router.navigate(['not-found'])
-    //     })
-    //   }
+    this.routes.paramMap.subscribe(params => {
+      const id = params.get('id')
+      if (typeof id == 'string') {
+        const _id : number = +id
+        this.service.getFullPost(_id).subscribe({
+          next : response => this.post = response,
+          error : e => this.router.navigate(['not-found'])
+        })
+      }
 
-    //   else this.router.navigate(['not-found'])
-    // });
+      else this.router.navigate(['not-found'])
+    });
 
   }
 }
