@@ -1,4 +1,4 @@
-import { BlogType } from "../types/constants.enum"
+import { BlogType } from "../types/constants.type"
 
 export interface LoginForm {
   username : string,
