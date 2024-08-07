@@ -17,8 +17,7 @@ export class AuthorizeComponent implements OnInit{
     private readonly tokenService : TokenService,
     private readonly router : Router,
     private readonly storageService : BrowserStorageService,
-    private readonly authService : AuthService,
-    private readonly userService : FetchUserService
+    private readonly authService : AuthService
   ) {}
   ngOnInit(): void {
     const code = (new URLSearchParams(window.location.search)).get("code")
@@ -28,9 +27,9 @@ export class AuthorizeComponent implements OnInit{
           this.storageService.set("access_token", response.access_token)
           this.storageService.set("refresh_token", response.refresh_token)
           this.authService.registerResource(response.id_token).subscribe()
-          this.userService.fetchCurrentUser().subscribe()
           this.router.navigate(['/home'])
-        }
+        },
+        error : () => this.router.navigate(['/home?error'])
       })
   }
 
