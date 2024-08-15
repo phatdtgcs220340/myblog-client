@@ -1,15 +1,16 @@
 import { inject } from "@angular/core"
 import { CanActivateFn, ActivatedRouteSnapshot, RouterStateSnapshot, Router } from "@angular/router"
-import { BrowserStorageService } from "../services/browser-storage/browser-storage.service"
+import { FetchUserService } from "../services/resources/users/fetch-user.service"
 
 export const canActivateAdmin : CanActivateFn = (
   route : ActivatedRouteSnapshot,
   state : RouterStateSnapshot
 ) => {
-  if (inject(BrowserStorageService).get("access_token"))
-    return true
-  else {
-    inject(Router).navigate(["/"])
-    return false
-  }
+  const user = inject(FetchUserService).getCurrentUser()
+  let isAdmin = false
+  if (user !== null)
+    isAdmin = user.role.includes('ADMIN')
+  if (!isAdmin)
+    inject(Router).navigate(['/home'])
+  return isAdmin
 }
