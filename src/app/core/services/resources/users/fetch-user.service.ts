@@ -10,7 +10,7 @@ import { User } from '../../../../shared/models/interfaces/responses.interface';
 })
 export class FetchUserService {
   private readonly apiUrl = `${resourceURL}/api/v1/user`
-  private currentUser !: User;
+  private currentUser : User | null = null;
   constructor(private http : HttpClient, private storageService : BrowserStorageService) { }
 
   public fetchCurrentUser() : Observable<User> {
@@ -21,11 +21,17 @@ export class FetchUserService {
     return this.http.get<User>(this.apiUrl, {
       headers : headers
     }).pipe(
-      tap(u => this.currentUser = u)
+      tap(u => {
+        this.currentUser = u
+      })
     )
   }
 
-  public getCurrentUser() : User {
-    return this.currentUser;
+  public getCurrentUser() : User | null {
+    return this.currentUser
+  }
+
+  public logout() : void {
+    this.currentUser = null
   }
 }
