@@ -4,20 +4,21 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { BrowserStorageService } from '../../browser-storage/browser-storage.service';
 import { UploadPostForm } from '../../../../shared/models/interfaces/requests.interface';
-import { FullPost } from '../../../../shared/models/interfaces/responses.interface';
+import { FullPost, Page, PartialPost } from '../../../../shared/models/interfaces/responses.interface';
+import { API_V1_PATH } from '../../../../shared/constants/endpoints';
 
 @Injectable({
   providedIn: 'root'
 })
 export class FetchPostsService {
-  private apiUrl = `${resourceURL}/api/v1/blog`
+  private apiUrl = `${API_V1_PATH}/blog`
 
   constructor(private http: HttpClient, private storageService : BrowserStorageService) { }
 
-  getPartialPost(_page : number = 0, _size : number = 5) : Observable<any> {
+  getPartialPost(_page : number = 0, _size : number = 5) : Observable<Page<PartialPost>> {
     if (_size < 1)
       throw new Error("Size mustn't be less than 1")
-    return this.http.get<any>(this.apiUrl, {
+    return this.http.get<Page<PartialPost>>(this.apiUrl, {
       params : { page : _page, size : _size }
      })
   }
