@@ -1,12 +1,24 @@
 import { UserRole } from "../types/constants.type"
 
-export interface TokenResponse {
+interface TokenResponse {
   access_token : string,
   refresh_token : string,
   id_token : string
 }
 
-export interface PartialPost {
+interface Page<T> {
+  content: Array<T>;
+  page: Pageable;
+}
+
+interface Pageable {
+  size: number;
+  number: number;
+  totalElements: number;
+  totalPages: number;
+}
+
+interface PartialPost {
   id : number,
   title : string,
   type : string,
@@ -14,13 +26,13 @@ export interface PartialPost {
   images : Array<string>
 }
 
-export interface FullPost extends PartialPost{
+interface FullPost extends PartialPost{
   content : string,
   totalLikes : number,
   totalReplies : number
 }
 
-export interface Reply {
+interface Reply {
   userId : number,
   username : string,
   avatar : string,
@@ -28,7 +40,7 @@ export interface Reply {
   dateAudit : string
 }
 
-export interface User {
+interface User {
   id : number,
   fullName : string,
   username : string,
@@ -36,3 +48,5 @@ export interface User {
   role : Array<UserRole>,
   participatedDate : string
 }
+
+export { TokenResponse, PartialPost, FullPost, Reply, User, Page }
