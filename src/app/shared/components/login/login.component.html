@@ -14,8 +14,9 @@
     <div class="w-[400px] overflow-x-hidden">
       <div class="inline-flex items-center transition-transform ease-in"
       [class.translate-x-[-400px]]="isSignUp">
+      <!-- Sign in box -->
         <form
-          class="shadow w-[400px] h-fit py-2 pb-6 px-4 flex flex-col justify-center bg-white"
+          class="w-[400px] h-fit py-2 pb-6 px-4 flex flex-col justify-center bg-white border rounded-md"
           (submit)="onLoginFormSubmit()">
           <div class="self-end">
             <svg
@@ -78,8 +79,9 @@
             </svg>
             <span class="font-medium">Sign in with Google</span></div>
         </form>
+        <!-- Sign up box -->
         <form
-          class="shadow w-[400px] py-2 pb-6 px-4 flex flex-col justify-center bg-white"
+          class="w-[400px] py-2 pb-6 px-4 flex flex-col justify-center bg-white border rounded-md"
           (submit)="onRegisterFormSubmit($event)">
           <div class="self-end">
             <svg
