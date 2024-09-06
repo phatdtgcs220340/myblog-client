@@ -14,6 +14,8 @@ export class ReplySingleComponent {
    username: '',
    avatar: '',
    content: '',
-   dateAudit: ''
+   dateAudit: '',
+   id: 0,
+   totalLikes: 0
  }
 }
