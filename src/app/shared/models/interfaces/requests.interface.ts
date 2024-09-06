@@ -1,24 +1,31 @@
 import { BlogType } from "../types/constants.type"
 
-export interface LoginForm {
+interface LoginForm {
   username : string,
   password : string
 }
 
-export interface RegisterForm {
+interface RegisterForm {
   fullName : string,
   username : string,
   password : string,
 }
 
-export interface UploadPostForm {
+interface UploadPostForm {
   title : string,
   type : BlogType,
   content : string,
   files : Array<ImageFile>
 }
 
-export interface ImageFile {
+interface ImageFile {
   input : HTMLInputElement,
   blobUrl : string
 }
+
+interface UploadReplyForm {
+  content : string,
+  blogId : number
+}
+
+export { LoginForm, RegisterForm, UploadPostForm, ImageFile, UploadReplyForm }

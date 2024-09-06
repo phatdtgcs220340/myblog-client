@@ -1,4 +1,6 @@
+import { HttpHeaders } from '@angular/common/http';
 import { inject, Inject, Injectable, InjectionToken } from '@angular/core';
+import { resourceURL } from '../../../../app.env';
 export const BROWSER_STORAGE = new InjectionToken<Storage>('Browser Storage', {
   providedIn: 'root',
   factory: () => sessionStorage
@@ -19,6 +21,12 @@ export class BrowserStorageService {
 
   clear() : void {
     this.storage.clear()
+  }
+
+  generateTokenHeader() : HttpHeaders{
+    return new HttpHeaders({
+      'Authorization' : `Bearer ${this.get("access_token")}`
+    })
   }
 }
 

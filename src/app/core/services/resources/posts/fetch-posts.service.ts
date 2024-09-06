@@ -24,12 +24,9 @@ export class FetchPostsService {
   }
 
   uploadForm(form : FormData) : Observable<any> {
-    const headers = new HttpHeaders({
-      'Authorization' : `Bearer ${this.storageService.get("access_token")}`
-    })
 
     return this.http.post(this.apiUrl, form, {
-      headers : headers
+      headers : this.storageService.generateTokenHeader()
     })
   }
 

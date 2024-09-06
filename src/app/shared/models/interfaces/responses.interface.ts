@@ -33,11 +33,13 @@ interface FullPost extends PartialPost{
 }
 
 interface Reply {
+  id : number,
   userId : number,
   username : string,
   avatar : string,
   content : string,
-  dateAudit : string
+  dateAudit : string,
+  totalLikes : number
 }
 
 interface User {
