@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { PostCardComponent } from '../../shared/components/post-card/post-card.component';
 import { FullPost } from '../../shared/models/interfaces/responses.interface';
 import { FetchPostsService } from '../../core/services/resources/posts/fetch-posts.service';
@@ -12,36 +12,24 @@ import { ReplyCardComponent } from '../../shared/components/reply/reply-card/rep
   templateUrl: './post-view.component.html',
   styleUrl: './post-view.component.css'
 })
-export class PostViewComponent implements OnInit {
-  post : FullPost = {
-    content: '',
-    totalLikes: 0,
-    totalReplies: 0,
-    id: 0,
-    title: '',
-    type: '',
-    dateAudit: '',
-    images: []
-  }
+export class PostViewComponent{
+  post : FullPost | null = null
 
   constructor(
     private readonly service: FetchPostsService,
     private readonly routes : ActivatedRoute,
-    private readonly router : Router) {}
+    private readonly router : Router) {
 
-  ngOnInit(): void {
     this.routes.paramMap.subscribe(params => {
       const id = params.get('id')
       if (typeof id == 'string') {
         const _id : number = +id
         this.service.getFullPost(_id).subscribe({
           next : response => this.post = response,
-          error : e => this.router.navigate(['not-found'])
+          // error : e => this.router.navigate(['not-found'])
         })
       }
-
       else this.router.navigate(['not-found'])
     });
-
-  }
+    }
 }
