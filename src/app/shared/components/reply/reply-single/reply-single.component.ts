@@ -12,7 +12,7 @@ export class ReplySingleComponent {
  @Input() reply : Reply = {
    userId: 0,
    username: '',
-   avatar: '',
+   avatarUrl: '',
    content: '',
    dateAudit: '',
    id: 0,

@@ -15,28 +15,23 @@ import { RouterLink } from '@angular/router';
   providers : [FetchPostsService]
 })
 export class HomeViewComponent implements OnInit {
-  posts : Array<PartialPost> = [
-    {
-      id: 0,
-      title: 'Lorem ipsum',
-      type: 'Thanh Huyen',
-      dateAudit: '26/02/2022',
-      images: ["https://cdn.donmai.us/original/8b/6d/8b6d9b3d38af038d20381fbdda0945b0.jpg", "https://cdn.donmai.us/original/8b/6d/8b6d9b3d38af038d20381fbdda0945b0.jpg", "https://cdn.donmai.us/original/8b/6d/8b6d9b3d38af038d20381fbdda0945b0.jpg", "https://cdn.donmai.us/original/8b/6d/8b6d9b3d38af038d20381fbdda0945b0.jpg"]
-    }
-  ]
+  posts : Array<PartialPost> = []
   serverDown : boolean = false
   isLoading : boolean = false
   constructor (private readonly postService : FetchPostsService) { }
-  async ngOnInit(): Promise<void> {
+  ngOnInit() {
     this.isLoading = true
-    await this.postService.getPartialPost().subscribe({
+    this.postService.getPartialPost().subscribe({
       next : (response) => {
         this.posts = response.content
         this.serverDown = false
+        this.isLoading = false
       },
-      error : (error) => this.serverDown = false
+      error : (error) => {
+        this.serverDown = false
+        this.isLoading = false
+      }
     });
-    this.isLoading = false
   }
 }
 

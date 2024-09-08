@@ -30,6 +30,8 @@ export class ReplyCardComponent implements OnInit{
 
   reply(event : Event) {
     event.preventDefault()
-    this.replyService.uploadReply(this.form).subscribe()
+    this.replyService.uploadReply(this.form).subscribe({
+      next : () => this.ngOnInit()
+    })
   }
 }

@@ -1,6 +1,6 @@
 <div class="flex p-2 border-b gap-2 mt-2">
-  <img class="h-12 w-12 rounded-full border object-fill" [src]="reply.avatar" alt="">
-  <div class="">
+  <img class="h-12 w-12 rounded-full border object-fill" [src]="reply.avatarUrl" alt="">
+  <div class="w-full">
     <h1 class="font-medium text-gray-600">{{ reply.username }}</h1>
     <p>{{ reply.content }}</p>
     <div class="flex justify-between">
@@ -14,7 +14,7 @@
         <p>0</p>
         </div>
       </div>
-      <p class="font-light"> {{ reply.dateAudit }}</p>
+      <p class="font-light pr-4"> {{ reply.dateAudit }}</p>
     </div>
   </div>
 </div>
