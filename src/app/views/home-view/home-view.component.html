@@ -2,7 +2,11 @@
   <div class="grid lg:grid-cols-2">
   @for (item of posts; track $index) {
     <app-post-card
-    [form]="item"/>
+    [form]="item">
+    <a [routerLink]="'/post/' + item.id" class="mt-5 text-cyan-500 font-medium text-sm underline underline-offset-2 hover:text-cyan-700">
+      View post
+    </a>
+  </app-post-card>
   }
   </div>
   @if (isLoading) {

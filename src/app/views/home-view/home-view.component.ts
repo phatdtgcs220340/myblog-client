@@ -4,17 +4,26 @@ import { FetchPostsService } from '../../core/services/resources/posts/fetch-pos
 import { PartialPost } from '../../shared/models/interfaces/responses.interface';
 import { LoadingCardComponent } from '../../shared/components/loading-card/loading-card.component';
 import { SideBarComponent } from '../../layout/side-bar/side-bar.component';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-home-view',
   standalone: true,
-  imports: [PostCardComponent, LoadingCardComponent, SideBarComponent],
+  imports: [PostCardComponent, LoadingCardComponent, SideBarComponent, RouterLink],
   templateUrl: './home-view.component.html',
   styleUrl: './home-view.component.css',
   providers : [FetchPostsService]
 })
 export class HomeViewComponent implements OnInit {
-  posts : Array<PartialPost> = []
+  posts : Array<PartialPost> = [
+    {
+      id: 0,
+      title: 'Lorem ipsum',
+      type: 'Thanh Huyen',
+      dateAudit: '26/02/2022',
+      images: ["https://cdn.donmai.us/original/8b/6d/8b6d9b3d38af038d20381fbdda0945b0.jpg", "https://cdn.donmai.us/original/8b/6d/8b6d9b3d38af038d20381fbdda0945b0.jpg", "https://cdn.donmai.us/original/8b/6d/8b6d9b3d38af038d20381fbdda0945b0.jpg", "https://cdn.donmai.us/original/8b/6d/8b6d9b3d38af038d20381fbdda0945b0.jpg"]
+    }
+  ]
   serverDown : boolean = false
   isLoading : boolean = false
   constructor (private readonly postService : FetchPostsService) { }
@@ -25,7 +34,7 @@ export class HomeViewComponent implements OnInit {
         this.posts = response.content
         this.serverDown = false
       },
-      error : (error) => this.serverDown = true
+      error : (error) => this.serverDown = false
     });
     this.isLoading = false
   }
