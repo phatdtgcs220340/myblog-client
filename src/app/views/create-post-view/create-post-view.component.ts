@@ -2,9 +2,8 @@ import { Component } from '@angular/core';
 import { ImageFile, UploadPostForm } from '../../shared/models/interfaces/requests.interface';
 import { FetchPostsService } from '../../core/services/resources/posts/fetch-posts.service';
 import { FormsModule } from '@angular/forms';
-import { PopupMessageComponent } from 'src/app/shared/components/popup-message/popup-message.component';
-import { Subject, timer } from 'rxjs';
-import { PopupMessageType } from 'src/app/shared/models/types/constants.type';
+import { timer } from 'rxjs';
+import { PopupMessageComponent, PopupMessage } from '../../shared/components/popup-message/popup-message.component';
 
 @Component({
   selector: 'app-create-post-view',
@@ -20,7 +19,7 @@ export class CreatePostViewComponent {
     files: new Array<ImageFile>()
   };
   isLoading: boolean = false
-  uploadMessage : Object | null = null
+  uploadMessage : PopupMessage | null = null
   constructor(private readonly service: FetchPostsService) { }
 
   displayBlob($event: Event): void {
@@ -63,11 +62,11 @@ export class CreatePostViewComponent {
     this.service.uploadForm(formData).subscribe({
       next: () => {
         this.isLoading = false
-        this.uploadMessage = "The post has been uploaded successfully"
         this.uploadMessage = {
           message : 'The post has been uploaded successfully',
           type : 'SUCCESS'
         }
+        timer(2000).subscribe(() => this.uploadMessage = null); // Hide after 2 seconds
       },
       error: error => {
         this.uploadMessage = {
@@ -84,3 +83,4 @@ export class CreatePostViewComponent {
     this.form.files.splice(index, 1);
   }
 }
+

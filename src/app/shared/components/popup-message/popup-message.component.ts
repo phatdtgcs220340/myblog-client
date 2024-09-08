@@ -18,5 +18,10 @@ export class PopupMessageComponent {
     ['ERROR', 'bg-red-300 border-red-200 text-red-600'],
     ['SUCCESS', 'bg-green-300 border-green-200 text-green-600']
   ])
-  
+
+}
+
+export interface PopupMessage {
+  message : string,
+  type : PopupMessageType
 }
