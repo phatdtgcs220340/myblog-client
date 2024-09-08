@@ -1,12 +1,11 @@
 import { Component, Input } from '@angular/core';
 import { ImageCarouselComponent } from '../image-carousel/image-carousel.component';
 import { PartialPost } from '../../models/interfaces/responses.interface';
-import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-post-card',
   standalone: true,
-  imports: [ImageCarouselComponent, RouterLink],
+  imports: [ImageCarouselComponent],
   templateUrl: './post-card.component.html',
   styleUrl: './post-card.component.css'
 })
