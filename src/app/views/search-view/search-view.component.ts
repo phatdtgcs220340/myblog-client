@@ -3,6 +3,7 @@ import { FormsModule } from '@angular/forms';
 import { FetchPostsService } from '../../core/services/resources/posts/fetch-posts.service';
 import { SearchPost } from '../../shared/models/interfaces/responses.interface';
 import { RouterLink } from '@angular/router';
+import { BehaviorSubject, debounceTime } from 'rxjs';
 
 @Component({
   selector: 'app-search-view',
@@ -12,15 +13,21 @@ import { RouterLink } from '@angular/router';
 })
 export class SearchViewComponent {
   searchText : string = ''
-
   result : Array<SearchPost> = []
+  searchSubject : BehaviorSubject<string> = new BehaviorSubject<string>('')
 
-  constructor(private service : FetchPostsService) {}
-
-  searchPost(event : Event) {
-    event.preventDefault()
-    this.service.getPostBySearchTitle(this.searchText).subscribe({
-      next : response => this.result = response
+  constructor(private service : FetchPostsService) {
+    this.searchSubject.pipe(debounceTime(550)).subscribe(search => {
+      if (search.length == 0)
+        this.result = []
+      else 
+        this.service.getPostBySearchTitle(search).subscribe({
+          next : response => this.result = response
+        })
     })
+  }
+
+  handleSearch(event : Event) {
+    this.searchSubject.next(this.searchText)
   }
 }
