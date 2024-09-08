@@ -1,21 +1,20 @@
-<div class="flex items-center ml-20 mt-20">
-  <div class="grid lg:grid-cols-2">
+<div class="flex ml-20">
+  <div class="grid lg:grid-cols-2 gap-5">
   @for (item of posts; track $index) {
     <app-post-card
     [form]="item">
-    <a [routerLink]="'/post/' + item.id" class="mt-5 text-cyan-500 font-medium text-sm underline underline-offset-2 hover:text-cyan-700">
-      View post
-    </a>
-  </app-post-card>
+      <a [routerLink]="'/post/' + item.id" class="mt-5 text-cyan-500 font-medium text-sm underline underline-offset-2 hover:text-cyan-700">
+        View post
+      </a>
+    </app-post-card>
   }
-  </div>
   @if (isLoading) {
-    <div>
-      @for (item of [1,1,1]; track $index) {
-        <app-loading-card></app-loading-card>
-      }
-    </div>
+    @for (item of [1,1,1]; track $index) {
+      <app-loading-card></app-loading-card>
+    }
   }
+
+</div>
 </div>
 @if (serverDown && !isLoading) {
   <div class="h-screen flex items-center justify-center">

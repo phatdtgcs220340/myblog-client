@@ -1,4 +1,4 @@
-<div class="relative top-[10%] flex justify-center">
+<div class="flex justify-center">
   <div class="flex flex-col lg:flex-row p-10">
     @if (post !== null) {
       <app-post-card [form]="post">
@@ -6,5 +6,5 @@
       </app-post-card>
       <app-reply-card [blogId]="post.id"></app-reply-card>
     }
-</div>
+  </div>
 </div>

@@ -1,8 +1,7 @@
 <button (click)="displayForm = !displayForm"
-  class="border rounded-lg px-4 py-2
-  text-gray-700 font-medium text-sm text-center
-  hover:bg-gray-500 hover:text-white
-  focus:ring-4 focus:ring-gray-200 focus:bg-gray-500 focus:text-white">
+  class="rounded-lg px-4 py-2 bg-gray-200
+    font-medium text-sm text-gray-600
+    hover:bg-gray-300 hover:text-gray-700">
   <span>
   Sign in
   </span>
@@ -10,7 +9,7 @@
 @if (displayForm) {
   <div class="h-screen flex items-start justify-center
     overflow-y-auto overflow-x-hidden
-    fixed left-0 right-0 z-50">
+    fixed left-0 right-0 z-50 top-[20%]">
     <div class="w-[400px] overflow-x-hidden">
       <div class="inline-flex items-center transition-transform ease-in"
       [class.translate-x-[-400px]]="isSignUp">
@@ -47,9 +46,9 @@
             [(ngModel)]="loginForm.password">
 
           <button type="submit"
-            class="py-1 w-1/2 self-center border rounded-lg flex items-center justify-center font-medium
-            hover:bg-gray-500 hover:text-white
-            focus:bg-gray-500 focus:text-white"
+            class="py-1 w-1/2 self-center border rounded-lg bg-gray-200 flex justify-center
+            font-medium text-gray-600
+          hover:bg-gray-300 hover:text-gray-700"
             [class.cursor-wait]="isLoading"
             [disabled]="isLoading">
             @if (!isLoading) {
@@ -126,9 +125,9 @@
             placeholder="********"
             type="password">
           <button type="submit"
-            class="py-1 w-1/2 self-center border rounded-lg flex items-center justify-center font-medium
-            hover:bg-gray-500 hover:text-white
-            focus:bg-gray-500 focus:text-white"
+            class="py-1 w-1/2 self-center border rounded-lg bg-gray-200 flex justify-center
+            font-medium text-gray-600
+          hover:bg-gray-300 hover:text-gray-700"
             [class.cursor-wait]="isLoading"
             [disabled]="isLoading">
             @if (!isLoading) {
