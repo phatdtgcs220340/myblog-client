@@ -10,7 +10,7 @@
 @if (displayForm) {
   <div class="h-screen flex items-start justify-center
     overflow-y-auto overflow-x-hidden
-    fixed top-1/3 left-0 right-0 z-50">
+    fixed left-0 right-0 z-50">
     <div class="w-[400px] overflow-x-hidden">
       <div class="inline-flex items-center transition-transform ease-in"
       [class.translate-x-[-400px]]="isSignUp">
@@ -28,14 +28,14 @@
             </svg>
           </div>
           <h1 class="text-2xl self-center mb-2 font-medium">Sign in</h1>
-          <label class="ml-1" for="username">Username</label>
+          <label class="ml-1 font-medium" for="username">Username</label>
           <input class="border mb-1 p-1 text-sm focus:outline-none"
             name="username"
             required
             placeholder="johndoe@yourcompany.com"
             type="text"
             [(ngModel)]="loginForm.username">
-          <label class="ml-1" for="password">Password</label>
+          <label class="ml-1 font-medium" for="password">Password</label>
           <input class="border mb-2 select-none p-1 text-sm focus:outline-none"
             name="password"
             required
@@ -93,28 +93,28 @@
             </svg>
           </div>
           <h1 class="text-2xl self-center mb-2 font-medium">Sign up</h1>
-          <label class="ml-1" for="username">Fullname</label>
+          <label class="ml-1 font-medium" for="username">Full name</label>
           <input class="border mb-1 p-1 text-sm focus:outline-none"
             required
             placeholder="John Doe"
             name="fullName"
             [(ngModel)]="registerForm.fullName"
             type="text">
-          <label class="ml-1" for="username">Email</label>
+          <label class="ml-1 font-medium" for="username">Email</label>
           <input class="border mb-1 p-1 text-sm focus:outline-none"
             required
             placeholder="johndoe@yourcompany.com"
             name="userame"
             [(ngModel)]="registerForm.username"
             type="text">
-          <label class="ml-1" for="password">Password</label>
+          <label class="ml-1 font-medium" for="password">Password</label>
           <input class="border mb-2 select-none p-1 text-sm focus:outline-none"
             required
             placeholder="********"
             name="password"
             [(ngModel)]="registerForm.password"
             type="password">
-            <label class="ml-1" for="password">Confirm password</label>
+            <label class="ml-1 font-medium" for="password">Confirm password</label>
           <input class="border mb-2 select-none p-1 text-sm focus:outline-none"
             required
             placeholder="********"

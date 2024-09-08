@@ -2,11 +2,14 @@ import { Component } from '@angular/core';
 import { ImageFile, UploadPostForm } from '../../shared/models/interfaces/requests.interface';
 import { FetchPostsService } from '../../core/services/resources/posts/fetch-posts.service';
 import { FormsModule } from '@angular/forms';
+import { PopupMessageComponent } from 'src/app/shared/components/popup-message/popup-message.component';
+import { Subject, timer } from 'rxjs';
+import { PopupMessageType } from 'src/app/shared/models/types/constants.type';
 
 @Component({
   selector: 'app-create-post-view',
   standalone: true,
-  imports: [FormsModule],
+  imports: [FormsModule, PopupMessageComponent],
   templateUrl: './create-post-view.component.html'
 })
 export class CreatePostViewComponent {
@@ -16,8 +19,8 @@ export class CreatePostViewComponent {
     content: '',
     files: new Array<ImageFile>()
   };
-  isLoading: boolean = false;
-
+  isLoading: boolean = false
+  uploadMessage : Object | null = null
   constructor(private readonly service: FetchPostsService) { }
 
   displayBlob($event: Event): void {
@@ -45,24 +48,36 @@ export class CreatePostViewComponent {
     return clonedInput;
   }
 
-  async upload($event: Event) {
+  upload($event: Event) {
     $event.preventDefault();
-    this.isLoading = true;
     const formData = new FormData();
     formData.append('title', this.form.title);
     formData.append('content', this.form.content);
     formData.append('type', this.form.type);
     this.form.files.forEach(element => {
-      console.log(element.input.value)
       if (element.input.files != null && element.input.files.length > 0) {
         formData.append('files', element.input.files[0]);
       }
     });
-    await this.service.uploadForm(formData).subscribe({
-      next: response => response,
-      error: error => console.log(error)
+    this.isLoading = true;
+    this.service.uploadForm(formData).subscribe({
+      next: () => {
+        this.isLoading = false
+        this.uploadMessage = "The post has been uploaded successfully"
+        this.uploadMessage = {
+          message : 'The post has been uploaded successfully',
+          type : 'SUCCESS'
+        }
+      },
+      error: error => {
+        this.uploadMessage = {
+          message : error.message,
+          type : 'ERROR'
+        }
+        this.isLoading = false
+        timer(2000).subscribe(() => this.uploadMessage = null); // Hide after 2 seconds
+      },
     });
-    this.isLoading = false
   }
 
   deleteBlob(index: number): void {

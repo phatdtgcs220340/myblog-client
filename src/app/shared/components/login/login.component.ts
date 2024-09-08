@@ -27,25 +27,23 @@ export class LoginComponent {
   isSignUp: boolean = false
   constructor(private readonly service : AuthService) { }
 
-  async onLoginFormSubmit() {
+  onLoginFormSubmit() {
     this.isLoading = true
     this.loginFailed = false
-    await this.service.login(this.loginForm).subscribe({
-      next : response => window.location.assign(authorizationLink),
-      error: error => this.loginFailed = true
+    this.service.login(this.loginForm).subscribe({
+      next : () => window.location.assign(authorizationLink),
+      error: () => this.loginFailed = true,
+      complete : () => this.isLoading = false
     })
-    this.isLoading = false
   }
 
-  async onRegisterFormSubmit(event : Event) {
+  onRegisterFormSubmit(event : Event) {
     event.preventDefault()
-    await this.service.register(this.registerForm).subscribe({
-      next : async (response) => {
-        await this.service.login(this.registerForm).subscribe({
-          next : response => window.location.assign(authorizationLink),
+    this.service.register(this.registerForm).subscribe({
+      next : () => this.service.login(this.registerForm).subscribe({
+          next : () => window.location.assign(authorizationLink),
           error: error => console.log(error)
-        })
-      },
+        }),
       error : error => console.log(error)
     })
   }

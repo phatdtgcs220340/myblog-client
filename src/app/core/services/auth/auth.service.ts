@@ -3,6 +3,8 @@ import { authorizationURL, resourceURL } from '../../../../app.env';
 import { HttpClient, HttpHeaders} from '@angular/common/http';
 import { LoginForm, RegisterForm } from '../../../shared/models/interfaces/requests.interface';
 import { Observable } from 'rxjs';
+import { TokenService } from '../token/token.service';
+import { BrowserStorageService } from '../browser-storage/browser-storage.service';
 
 @Injectable({
   providedIn: 'root'
@@ -11,9 +13,12 @@ export class AuthService {
   private loginApi = `${authorizationURL}/api/login`
   private registerApi = `${authorizationURL}/api/register`
   private registerResourceApi = `${resourceURL}/api/register`
-  private authenticated : boolean = false;
 
-  constructor(private readonly http: HttpClient) {}
+  constructor(
+    private readonly http: HttpClient, 
+    private readonly tokenService: TokenService,
+    private readonly storageService: BrowserStorageService
+  ) {}
 
   login(form : LoginForm) : Observable<any> {
     const headers = new HttpHeaders({
@@ -31,10 +36,6 @@ export class AuthService {
   }
 
   register(form : RegisterForm) : Observable<any>{
-    const headers = new HttpHeaders({
-      'Content-Type' : 'application/json'
-    })
-
     return this.http.post(this.registerApi, form)
   }
 
