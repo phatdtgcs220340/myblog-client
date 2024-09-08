@@ -1,2 +1,2 @@
-export type NavLink = '/home' | '/profile' | '/admin'
+export type NavLink = '/home' | '/profile' | '/admin' | '/search'
 

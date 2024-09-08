@@ -36,12 +36,16 @@ interface Reply {
   id : number,
   userId : number,
   username : string,
-  avatar : string,
+  avatarUrl : string,
   content : string,
   dateAudit : string,
   totalLikes : number
 }
 
+interface SearchPost {
+  id : number,
+  title : string
+}
 interface User {
   id : number,
   fullName : string,
@@ -51,4 +55,4 @@ interface User {
   participatedDate : string
 }
 
-export { TokenResponse, PartialPost, FullPost, Reply, User, Page }
+export { TokenResponse, PartialPost, FullPost, Reply, User, Page, SearchPost }

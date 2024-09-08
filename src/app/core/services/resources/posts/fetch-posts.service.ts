@@ -1,10 +1,8 @@
 import { Injectable } from '@angular/core';
-import { resourceURL } from '../../../../../app.env';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { BrowserStorageService } from '../../browser-storage/browser-storage.service';
-import { UploadPostForm } from '../../../../shared/models/interfaces/requests.interface';
-import { FullPost, Page, PartialPost } from '../../../../shared/models/interfaces/responses.interface';
+import { FullPost, Page, PartialPost, SearchPost } from '../../../../shared/models/interfaces/responses.interface';
 import { API_V1_PATH } from '../../../../shared/constants/endpoints';
 
 @Injectable({
@@ -34,4 +32,7 @@ export class FetchPostsService {
     return this.http.get<FullPost>(`${this.apiUrl}/${id}`)
   }
 
+  getPostBySearchTitle(text : string) : Observable<Array<SearchPost>> {
+    return this.http.get<Array<SearchPost>>(`${this.apiUrl}/search?title=${text}`);
+  }
 }

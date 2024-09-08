@@ -1,0 +1,38 @@
+<div class="flex flex-col items-center h-screen gap-5">
+  <form class="" (input)="searchPost($event)">
+    <label for="searchTitle" class="relative">
+      <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" class="pb-2.5 pl-1 absolute opacity-40" width="30px" height="30px">
+        <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+        <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
+        <g id="SVGRepo_iconCarrier">
+          <path d="M17 17L21 21" stroke="#323232" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"></path>
+          <path d="M19 11C19 15.4183 15.4183 19 11 19C6.58172 19 3 15.4183 3 11C3 6.58172 6.58172 3 11 3C15.4183 3 19 6.58172 19 11Z" stroke="#323232" stroke-width="2.4"></path>
+        </g>
+      </svg>
+      <input type="text"
+        [(ngModel)]="searchText"
+        class="border rounded-lg py-2 pl-8 pr-2 w-[600px]
+        focus:outline-none"
+        name="title"
+        placeholder="Search title">
+    </label>
+  </form>
+  <div class="min-h-[600px] w-1/2 border-2 rounded-lg flex justify-center">
+    @if(result.length == 0) {
+      <div class="text-gray-500 self-center">
+        No data available
+      </div>
+    }
+    @else {
+      <div class="w-full p-2">
+      @for (item of result; track $index) {
+        <div class="p-2 hover:bg-gray-100 border-b mb-1 rounded-lg">
+          <a [routerLink]="'/post/' + item.id" class="text-lg pb-4 hover:underline hover:underline-offset-2">
+            {{ item.title }}
+          </a>
+        </div>
+      }
+      </div>
+    }
+  </div>
+</div>
