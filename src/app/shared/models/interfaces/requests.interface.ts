@@ -1,4 +1,4 @@
-import { BlogType, SortDirection } from "../types/constants.type"
+import { SortDirection } from "../types/constants.type"
 
 interface LoginForm {
   username : string,
