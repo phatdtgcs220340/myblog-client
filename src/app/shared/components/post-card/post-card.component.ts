@@ -13,7 +13,7 @@ export class PostCardComponent {
   @Input() form : PartialPost = {
     id: 0,
     title: '',
-    type: '',
+    tags: [],
     dateAudit: '',
     images: []
   }
