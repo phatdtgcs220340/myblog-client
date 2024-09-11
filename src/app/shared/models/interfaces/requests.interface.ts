@@ -1,4 +1,4 @@
-import { BlogType } from "../types/constants.type"
+import { BlogType, SortDirection } from "../types/constants.type"
 
 interface LoginForm {
   username : string,
@@ -13,7 +13,7 @@ interface RegisterForm {
 
 interface UploadPostForm {
   title : string,
-  type : BlogType,
+  tags : Array<string>,
   content : string,
   files : Array<ImageFile>
 }
@@ -28,4 +28,10 @@ interface UploadReplyForm {
   blogId : number
 }
 
-export { LoginForm, RegisterForm, UploadPostForm, ImageFile, UploadReplyForm }
+interface BlogFilter {
+  name : string,
+  tags : Array<string>,
+  direction : SortDirection
+}
+
+export { LoginForm, RegisterForm, UploadPostForm, ImageFile, UploadReplyForm, BlogFilter }
