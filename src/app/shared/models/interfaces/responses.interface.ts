@@ -21,7 +21,7 @@ interface Pageable {
 interface PartialPost {
   id : number,
   title : string,
-  type : string,
+  tags : Array<string>,
   dateAudit : string,
   images : Array<string>
 }
@@ -46,6 +46,11 @@ interface SearchPost {
   id : number,
   title : string
 }
+
+interface SearchTag {
+  name : string
+}
+
 interface User {
   id : number,
   fullName : string,
@@ -55,4 +60,4 @@ interface User {
   participatedDate : string
 }
 
-export { TokenResponse, PartialPost, FullPost, Reply, User, Page, SearchPost }
+export { TokenResponse, PartialPost, FullPost, Reply, User, Page, SearchPost, SearchTag }

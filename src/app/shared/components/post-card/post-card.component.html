@@ -9,12 +9,16 @@
       [images]="form.images"></app-image-carousel>
     </div>
     <div class="w-full flex justify-between">
-      <button
-        class="ml-2 mb-2 py-1 px-2 shadow rounded-full bg-gray-400
-        text-sm font-medium text-gray-50
-        hover:bg-gray-500">
-        # {{ form.type }}
-      </button>
+      <div class="flex flex-wrap">
+        @for (item of form.tags; track $index) {
+        <button
+          class="ml-2 mb-2 py-1 px-2 shadow rounded-full bg-gray-400
+          text-sm font-medium text-gray-50
+          hover:bg-gray-500">
+          # {{ item }}
+        </button>
+        }
+      </div>
       <div class="mr-2 font-light">
         {{ form.dateAudit }}
       </div>

@@ -10,18 +10,56 @@
       required
       [(ngModel)]="form.title">
     </div>
-    <div class="mt-2">
+    <form (input)="handleSearchTag($event)" class="mt-2">
       <label class="font-medium" for=""><span class="text-red-600">*</span> Tag</label>
       <br>
-      <select [(ngModel)]="form.type"
-      name="type"
-      class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg px-1 py-1 focus:outline-none">
-        <option value="THANH_HUYEN">Thanh Huyen</option>
-        <option value="BOOK">Book</option>
-        <option value="LIFE_STYLE">Life style</option>
-        <option value="SELF_TALK">Self-talk</option>
-      </select>
-    </div>
+      <div class="w-1/2 flex flex-wrap gap-2 mb-1">
+        @for (item of form.tags; track $index) {
+          <div class="flex justify-between items-center gap-2 w-fit bg-gray-100 px-2 py-1 rounded-lg
+          text-sm text-gray-400 cursor-pointer
+          hover:bg-gray-300 hover:text-gray-700"
+          (click)="form.tags.splice($index, 1)">
+            <span>{{ item }}</span><svg width="12px" height="12px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M19 5L5 19M5.00001 5L19 19" stroke="#000000" stroke-width="1.272" stroke-linecap="round" stroke-linejoin="round"></path> </g></svg>
+          </div>
+        }
+      </div>
+      <label class="relative" for="">
+        <input name="search" class="px-1 py-1.5 text-sm border focus:outline-none w-[300px]" [(ngModel)]="searchTag" type="text">
+        @if (searchTag.length !== 0) {
+          <div class="border w-[200px] px-1 text-sm h-[150px] overflow-y-scroll">
+            @if (fetchTags.length == 0) {
+              <span class="px-1 py-1 text-gray-400">No data available</span>
+            }
+            @else {
+              @for (item of fetchTags; track $index) {
+                <div class="px-1 py-1 mb-1 border-b flex justify-between items-center
+                text-gray-400  hover:bg-gray-200 cursor-pointer"
+                (click)="addNewTag(item.name)">
+                  <span>{{ item.name }}</span>
+                  @if(form.tags.includes(item.name))
+                    {
+                      <svg height="10px" width="10px" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 196.887 196.887" xml:space="preserve" fill="#000000"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <g> <polygon style="fill:#010002;" points="191.268,26.967 59.541,158.683 5.615,104.76 0,110.386 59.541,169.92 196.887,32.585 "></polygon> </g> </g></svg>
+                    }
+                </div>
+              }
+            }
+          </div>
+        }
+          <button (click)="addNewTag(searchTag)"
+          class="absolute right-[1%] bg-gray-400 px-2 py-1 rounded-lg flex justify-between items-center gap-1
+          text-xs font-medium text-white
+          hover:bg-gray-500">
+          <svg fill="#ffffff" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="10px" height="10px" viewBox="0 0 45.402 45.402" xml:space="preserve">
+              <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+              <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
+              <g id="SVGRepo_iconCarrier"><g>
+                <path d="M41.267,18.557H26.832V4.134C26.832,1.851,24.99,0,22.707,0c-2.283,0-4.124,1.851-4.124,4.135v14.432H4.141 c-2.283,0-4.139,1.851-4.138,4.135c-0.001,1.141,0.46,2.187,1.207,2.934c0.748,0.749,1.78,1.222,2.92,1.222h14.453V41.27 c0,1.142,0.453,2.176,1.201,2.922c0.748,0.748,1.777,1.211,2.919,1.211c2.282,0,4.129-1.851,4.129-4.133V26.857h14.435 c2.283,0,4.134-1.867,4.133-4.15C45.399,20.425,43.548,18.557,41.267,18.557z"></path>
+              </g>
+            </g>
+          </svg>
+          New tag</button>
+      </label>
+    </form>
     <div class="mt-2">
       <label class="font-medium" for=""><span class="text-red-600">*</span> Content</label>
       <textarea id="editor" rows="10"
