@@ -5,6 +5,7 @@ import { PartialPost } from '../../shared/models/interfaces/responses.interface'
 import { LoadingCardComponent } from '../../shared/components/loading-card/loading-card.component';
 import { SideBarComponent } from '../../layout/side-bar/side-bar.component';
 import { RouterLink } from '@angular/router';
+import { BlogFilter } from '../../shared/models/interfaces/requests.interface';
 
 @Component({
   selector: 'app-home-view',
@@ -18,17 +19,22 @@ export class HomeViewComponent implements OnInit {
   posts : Array<PartialPost> = []
   serverDown : boolean = false
   isLoading : boolean = false
+  filter : BlogFilter = {
+    name: '',
+    tags: [],
+    direction: 'ASC'
+  }
   constructor (private readonly postService : FetchPostsService) { }
   ngOnInit() {
     this.isLoading = true
-    this.postService.getPartialPost().subscribe({
+    this.postService.getPartialPost(this.filter).subscribe({
       next : (response) => {
         this.posts = response.content
         this.serverDown = false
         this.isLoading = false
       },
       error : (error) => {
-        this.serverDown = false
+        this.serverDown = true
         this.isLoading = false
       }
     });

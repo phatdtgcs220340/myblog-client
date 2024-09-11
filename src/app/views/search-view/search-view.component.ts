@@ -20,9 +20,13 @@ export class SearchViewComponent {
     this.searchSubject.pipe(debounceTime(550)).subscribe(search => {
       if (search.length == 0)
         this.result = []
-      else 
-        this.service.getPostBySearchTitle(search).subscribe({
-          next : response => this.result = response
+      else
+        this.service.getPartialPost({
+          name: search,
+          tags: [],
+          direction: 'ASC'
+        }).subscribe({
+          next : response => this.result = response.content
         })
     })
   }
