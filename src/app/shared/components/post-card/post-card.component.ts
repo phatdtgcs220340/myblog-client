@@ -6,8 +6,7 @@ import { PartialPost } from '../../models/interfaces/responses.interface';
   selector: 'app-post-card',
   standalone: true,
   imports: [ImageCarouselComponent],
-  templateUrl: './post-card.component.html',
-  styleUrl: './post-card.component.css'
+  templateUrl: './post-card.component.html'
 })
 export class PostCardComponent {
   @Input() form : PartialPost = {

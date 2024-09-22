@@ -1,13 +1,17 @@
 <button (click)="displayForm = !displayForm"
   class="rounded-lg px-3 py-1.5 bg-gray-200
-    font-medium text-xs text-gray-600
+    font-semibold text-xs text-gray-600
     hover:bg-gray-300 hover:text-gray-700">
   <span>
   Sign in
   </span>
 </button>
+
 @if (displayForm) {
-  <div class="h-screen flex items-start justify-center
+  <div class="fixed inset-0 opacity-40 bg-gray-700 z-40" (click)="displayForm = !displayForm">
+
+  </div>
+  <div class="flex items-start justify-center
     overflow-y-auto overflow-x-hidden
     fixed left-0 right-0 z-50 top-[20%]">
     <div class="w-[400px] overflow-x-hidden">
@@ -15,7 +19,7 @@
       [class.translate-x-[-400px]]="isSignUp">
       <!-- Sign in box -->
         <form
-          class="w-[400px] h-fit py-2 pb-6 px-4 flex flex-col justify-center bg-white border rounded-md"
+          class="w-[400px] h-fit py-2 pb-6 px-4 flex flex-col justify-center bg-white border-2 border-gray-400 rounded-md"
           (submit)="onLoginFormSubmit()">
           <div class="self-end">
             <svg class="cursor-pointer rounded-full p-1 hover:bg-gray-200"
