@@ -51,6 +51,12 @@ interface SearchTag {
   name : string
 }
 
+interface FileDetailResponse {
+  id : number,
+  fileLink : string,
+  description: string
+}
+
 interface User {
   id : number,
   fullName : string,
@@ -60,4 +66,4 @@ interface User {
   participatedDate : string
 }
 
-export { TokenResponse, PartialPost, FullPost, Reply, User, Page, SearchPost, SearchTag }
+export { TokenResponse, PartialPost, FullPost, Reply, User, Page, SearchPost, SearchTag, FileDetailResponse }

@@ -15,7 +15,7 @@ interface UploadPostForm {
   title : string,
   tags : Array<string>,
   content : string,
-  files : Array<ImageFile>
+  files : Array<FileDetail>
 }
 
 interface ImageFile {
@@ -34,4 +34,9 @@ interface BlogFilter {
   direction : SortDirection
 }
 
-export { LoginForm, RegisterForm, UploadPostForm, ImageFile, UploadReplyForm, BlogFilter }
+
+interface FileDetail {
+  id : number,
+  description : string
+}
+export { LoginForm, RegisterForm, UploadPostForm, ImageFile, UploadReplyForm, BlogFilter, FileDetail }
