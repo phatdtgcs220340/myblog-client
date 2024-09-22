@@ -20,17 +20,46 @@
 }
 <div
   class="p-2 inline-flex gap-1 carousel"
-  [style.transform]="'translateX(' + -200 * offsetX + 'px)'">
+  [style.transform]="'translateX(' + -210 * offsetX + 'px)'">
   @for (item of images; track $index) {
     <div
     class="h-[200px] w-[200px] bg-gray-200 carousel-item rounded-lg
-    flex items-center justify-center">
-      <img class="rounded-lg object-contain" [src]="item" alt="">
+    flex items-center justify-center hover:-translate-y-2 transition-transform ease-in"
+    (click)="displayImage = $index">
+      <img class="rounded-lg object-contain cursor-pointer" [src]="item" alt="">
     </div>
   }
 </div>
-<!-- @if (displayImage != null) {
-  <div class="h-screen flex items-center justify-center z-50">
-    <img [src]="displayImage" alt="">
+@if (displayImage !== null) {
+  <div class="fixed inset-0 h-screen flex justify-center z-50">
+    <img class="self-center object-contain current-image" [src]="images.at(displayImage)" alt="">
+    <svg class="absolute right-1 top-1 cursor-pointer rounded-full p-2 hover:bg-gray-400"
+    width="40px" height="40px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"
+    (click)="displayImage = null">
+      <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+      <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
+      <g id="SVGRepo_iconCarrier">
+        <path d="M19 5L5 19M5.00001 5L19 19" stroke="#000000" stroke-width="1.272" stroke-linecap="round" stroke-linejoin="round">
+        </path>
+      </g>
+    </svg>
+    <button [disabled]="displayImage == 0"
+      [class]="displayImage == 0 ? '' : 'cursor-pointer hover:bg-gray-100 hover:opacity-100'"
+      class="absolute top-[50%] left-0 bg-gray-50 opacity-35 rounded-full"
+      (click)="displayImage = displayImage - 1">
+      <svg width="40px" height="40px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M6 12H18M6 12L11 7M6 12L11 17" stroke="#000000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+    </button>
+    <button [disabled]="displayImage == images.length - 1"
+      [class]="displayImage == images.length - 1 ? '' : 'cursor-pointer hover:bg-gray-100 hover:opacity-100'"
+      class="absolute top-[50%] right-0 bg-gray-50 opacity-35 rounded-full"
+      (click)="displayImage = displayImage + 1">
+      <svg width="40px" height="40px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M6 12H18M18 12L13 7M18 12L13 17" stroke="#000000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+    </button>
   </div>
-} -->
+  <div class="fixed inset-0 h-screen z-40 bg-gray-900 opacity-70">
+  </div>
+}

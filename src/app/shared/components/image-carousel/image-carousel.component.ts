@@ -10,5 +10,5 @@ import { Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
 export class ImageCarouselComponent {
   @Input() images : Array<string> = []
   offsetX: number = 0;
-  displayImage : string | null = null;
+  displayImage : number | null = null;
 }
