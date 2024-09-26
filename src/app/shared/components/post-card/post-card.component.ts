@@ -14,6 +14,7 @@ export class PostCardComponent {
     title: '',
     tags: [],
     dateAudit: '',
-    images: []
+    images: [],
+    content: ''
   }
 }

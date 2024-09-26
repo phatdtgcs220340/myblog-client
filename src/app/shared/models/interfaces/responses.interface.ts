@@ -23,11 +23,11 @@ interface PartialPost {
   title : string,
   tags : Array<string>,
   dateAudit : string,
-  images : Array<string>
+  images : Array<string>,
+  content : string,
 }
 
 interface FullPost extends PartialPost{
-  content : string,
   totalLikes : number,
   totalReplies : number
 }
@@ -54,6 +54,7 @@ interface SearchTag {
 interface FileDetailResponse {
   id : number,
   fileLink : string,
+  fileLinkResized : string,
   description: string
 }
 
