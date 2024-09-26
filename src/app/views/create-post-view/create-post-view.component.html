@@ -1,5 +1,5 @@
 <div class="flex justify-center">
-  <form (submit)="upload($event)" class="border ml-4 p-3 w-3/5 mr-2 bg-white">
+  <form class="border ml-4 p-3 w-3/5 mr-2 bg-white">
     <div class="text-center w-full text-2xl mb-2 font-medium">
       Create a post
     </div>
@@ -46,7 +46,7 @@
           </div>
         }
           <button (click)="addNewTag(searchTag)"
-          class="absolute right-[1%] bg-gray-400 px-2 py-1 rounded-lg flex justify-between items-center gap-1
+          class="absolute right-[1%] -top-[3%] bg-gray-400 px-2 py-1 rounded-lg flex justify-between items-center gap-1
           text-xs font-medium text-white
           hover:bg-gray-500">
           <svg fill="#ffffff" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="10px" height="10px" viewBox="0 0 45.402 45.402" xml:space="preserve">
@@ -69,12 +69,13 @@
       required></textarea>
     </div>
     <div>
-      <label class="font-medium" for="">Images</label>
+      <label class="mt-2 font-medium items-center gap-2" for="">Images
+      </label>
       <br>
       <div class="flex flex-wrap gap-2">
-        @for (item of form.files; track $index) {
-          <label class="flex flex-col items-center justify-center h-48 p-1 border-2 border-gray-300 border-dashed rounded-lg cursor-pointer bg-gray-50 mr-2 relative">
-            <img class="max-h-[180px]" [src]="item.blobUrl" alt="">
+        @for (item of blobImages; track $index) {
+          <label class="flex flex-col items-center justify-center h-48 p-1 border-2 border-gray-300 border-dashed rounded-lg cursor-pointer bg-gray-200 mr-2 relative">
+            <img class="h-[200px] w-[200px] object-contain" [src]="item.blobUrl" alt="">
             <div class="absolute -top-4 -right-4 rounded-full bg-gray-200 cursor-pointer opacity-50 hover:opacity-100"
             (click)="deleteBlob($index)">
             <svg class="cursor-pointer rounded-full p-1 hover:bg-gray-200" width="30px" height="30px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M19 5L5 19M5.00001 5L19 19" stroke="#000000" stroke-width="1.272" stroke-linecap="round" stroke-linejoin="round"></path> </g></svg>
@@ -96,6 +97,7 @@
       class="mt-4 py-1 w-[150px] rounded-lg bg-gray-200 flex justify-center
       font-medium text-sm text-gray-600
     hover:bg-gray-300 hover:text-gray-700"
+      (click)="upload($event)"
       [class.cursor-wait]="isLoading"
       [class.bg-gray-300]="isLoading"
       [disabled]="isLoading">
@@ -115,3 +117,4 @@
   {
     <app-popup-message [message]="uploadMessage.message" [type]="uploadMessage.type"/>
   }
+

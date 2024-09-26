@@ -1,11 +1,12 @@
 import { Component } from '@angular/core';
-import { ImageFile, UploadPostForm } from '../../shared/models/interfaces/requests.interface';
+import { FileDetail, ImageFile, UploadPostForm } from '../../shared/models/interfaces/requests.interface';
 import { FetchPostsService } from '../../core/services/resources/posts/fetch-posts.service';
 import { FormsModule } from '@angular/forms';
-import { BehaviorSubject, debounceTime, timer } from 'rxjs';
+import { BehaviorSubject, debounceTime, Observable, timer } from 'rxjs';
 import { PopupMessageComponent, PopupMessage } from '../../shared/components/popup-message/popup-message.component';
 import { FetchTagService } from '../../core/services/resources/tags/fetch-tag.service';
-import { SearchTag } from '../../shared/models/interfaces/responses.interface';
+import { FileDetailResponse, SearchTag } from '../../shared/models/interfaces/responses.interface';
+import { FetchFilesService } from '../../core/services/resources/files/fetch-files.service';
 
 @Component({
   selector: 'app-create-post-view',
@@ -18,16 +19,19 @@ export class CreatePostViewComponent {
     title: '',
     tags: [],
     content: '',
-    files: new Array<ImageFile>()
+    files: new Array<FileDetail>()
   };
+  blobImages : Array<ImageFile> = []
   searchTag : string = ''
   fetchTags : Array<SearchTag> = []
   searchSubject : BehaviorSubject<string> = new BehaviorSubject<string>('')
   isLoading: boolean = false
   uploadMessage : PopupMessage | null = null
 
-  constructor(private readonly service: FetchPostsService,
-    private readonly tagService: FetchTagService
+  constructor(
+    private readonly service: FetchPostsService,
+    private readonly tagService: FetchTagService,
+    private readonly fileService: FetchFilesService
   ) {
     this.searchSubject.pipe(debounceTime(550)).subscribe(search => {
       if (search === '')
@@ -48,7 +52,7 @@ export class CreatePostViewComponent {
         const arrayBuffer = reader.result as ArrayBuffer;
         const blob = new Blob([arrayBuffer], { type: file.type });
         const newInput = this.cloneInputElement(input);
-        this.form.files.push({
+        this.blobImages.push({
           input: newInput,
           blobUrl: URL.createObjectURL(blob)
         });
@@ -64,44 +68,66 @@ export class CreatePostViewComponent {
     return clonedInput;
   }
 
-  upload($event: Event) {
-    $event.preventDefault();
-    var tagsString = '';
-    this.form.tags.forEach(tag => tagsString = tagsString + tag + ', ')
-    tagsString = tagsString.trim();
-    tagsString = tagsString.substring(0, tagsString.length - 1);
+  uploadImage() : Observable<Array<FileDetailResponse>> {
     const formData = new FormData();
-    formData.append('title', this.form.title);
-    formData.append('content', this.form.content);
-    formData.append('tags', tagsString);
-    this.form.files.forEach(element => {
+    this.blobImages.forEach(element => {
       if (element.input.files != null && element.input.files.length > 0) {
         formData.append('files', element.input.files[0]);
       }
     });
+    return this.fileService.uploadImages(formData)
+  }
+
+  upload($event: Event) {
+    $event.preventDefault();
     this.isLoading = true;
-    this.service.uploadForm(formData).subscribe({
-      next: () => {
-        this.isLoading = false
-        this.uploadMessage = {
-          message : 'The post has been uploaded successfully',
-          type : 'SUCCESS'
-        }
-        timer(2000).subscribe(() => this.uploadMessage = null); // Hide after 2 seconds
+    this.uploadImage().subscribe({
+      next : res => {
+        this.form.files = [] // empty list again to prevent unexpected bug
+        res.forEach(i => {
+          this.form.files.push(i)
+        })
+        this.service.uploadForm(this.form).subscribe({
+          next: () => {
+            this.isLoading = false
+            this.uploadMessage = {
+              message : 'The post has been uploaded successfully',
+              type : 'SUCCESS'
+            }
+            timer(2000).subscribe(() => {
+              this.uploadMessage = null
+              this.form = {
+                title: '',
+                tags: [],
+                content: '',
+                files: new Array<FileDetail>()
+              }
+              this.blobImages = []
+            });
+          },
+          error: r => {
+            this.uploadMessage = {
+              message : r.error.message,
+              type : 'ERROR'
+            }
+            this.isLoading = false
+            timer(2000).subscribe(() => this.uploadMessage = null);
+          },
+        });
       },
-      error: error => {
+      error: r => {
         this.uploadMessage = {
-          message : error.message,
+          message : r.error.message,
           type : 'ERROR'
         }
         this.isLoading = false
-        timer(2000).subscribe(() => this.uploadMessage = null); // Hide after 2 seconds
+        timer(2000).subscribe(() => this.uploadMessage = null);
       },
-    });
+    })
   }
 
   deleteBlob(index: number): void {
-    this.form.files.splice(index, 1);
+    this.blobImages.splice(index, 1);
   }
 
   handleSearchTag(event : Event) {
