@@ -11,4 +11,9 @@ export class ImageCarouselComponent {
   @Input() images : Array<string> = []
   offsetX: number = 0;
   displayImage : number | null = null;
+
+  convertedImage(url : string | undefined) : string | void {
+    if (url !== undefined)
+      return url.replace("_small", "")
+  }
 }
